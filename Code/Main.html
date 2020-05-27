@@ -8,11 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-    <br><br>
-    <h1 align=center>選課系統</h1>
+    <style type="text/css">
+        @import "Layout.css";
+    </style>
     <script>
         department = new Array();
         department[0] = [""];
@@ -25,7 +23,14 @@
             document.myForm.member.length = department[index].length;	// 刪除多餘的選項
         }
     </script>
+</head>
 
+<body>
+    <br><br>
+    <header>
+        <h1 align=center>選課系統</h1>
+    </header>
+    <br>
     <form action="Login.html" method="post" class="container" align=right>
         <input class="btn btn-outline-secondary" type="submit" value="Logout">
     </form>
@@ -46,7 +51,7 @@
     </form>
 
     <br>
-    <div class="container">
+    <section class="container">
         <table class="table-danger table-bordered" width="1000">
             <thead>
                 <tr align=center>
@@ -61,8 +66,14 @@
                 </tr>
             </thead>
         </table>
-    </div>
-
+    </section>
+    <nav>
+        <ol align="center" border=none>
+            <h align=center>注意事項</h>
+            <li>學分上限為30</li>
+            <li>學分下限為9</li>
+        </ol>
+    </nav>
 </body>
 
 </html>

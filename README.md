@@ -1,1 +1,16 @@
-# Pneumonoultramicroscopicsilicovolcanoconiosis
+# 火山矽肺症
+## Git 使用說明
+1. `git clone {專案的Git網址}`
+    - 把專案下載下來
+2. `cd {專案位置}`
+    - 以下動作要在下載下來的轉案底下做
+3. `git add .`
+    - 在修正完檔案後，把檔案紀錄存存進緩衝區
+4. `git commit -m "{你的備註}"`
+    - 寫一下你這此修改的內容，留個記錄讓別人看
+5. `git push`
+    - 最後把你的修改的專案丟到git上
+- 額外補充
+    - `git pull`
+        - 同步你本地跟雲端的專案內容
+        - 一樣要在專案資料夾下

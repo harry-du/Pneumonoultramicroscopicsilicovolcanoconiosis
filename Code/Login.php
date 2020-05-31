@@ -38,10 +38,9 @@
     // }//檢測是否有submit操作 
     include('connect.php');//連結資料庫
     $id = $_POST['id'];//post獲得使用者名稱錶單值
-    $passowrd = $_POST['password'];//post獲得使用者密碼單值
-    password_hash($passowrd, PASSWORD_DEFAULT);
-    if ($id && $passowrd){//如果使用者名稱和密碼都不為空
-        $sql =  "SELECT * FROM login WHERE sid ='$id' AND pwd='$passowrd'";
+    $password = $_POST['password'];//post獲得使用者密碼單值
+    if ($id && $password){//如果使用者名稱和密碼都不為空
+        $sql =  "SELECT * FROM login WHERE sid ='$id' AND pwd='$password'";
         $result = mysqli_query($con,$sql);//執行sql
     // $rows=mysqli_num_rows($result);//返回一個數值
     if($result->num_rows > 0){//0 false 1 true

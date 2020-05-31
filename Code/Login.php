@@ -39,13 +39,11 @@
     include('connect.php');//連結資料庫
     $id = $_POST['id'];//post獲得使用者名稱錶單值
     $passowrd = $_POST['password'];//post獲得使用者密碼單值
-    var_dump($passowrd && $id);
     if ($id && $passowrd){//如果使用者名稱和密碼都不為空
-        $sql =  "SELECT * FROM login WHERE s_id='$id' AND P_wd='$passowrd'";
+        $sql =  "SELECT * FROM login WHERE s_id ='$id' AND P_wd='$passowrd'";
         $result = mysqli_query($con,$sql);//執行sql
     // $rows=mysqli_num_rows($result);//返回一個數值
-    var_dump($result);
-    if($result){//0 false 1 true
+    if($result->num_rows > 0){//0 false 1 true
         header("refresh:0;url=Main.html");
         exit;
     }else{

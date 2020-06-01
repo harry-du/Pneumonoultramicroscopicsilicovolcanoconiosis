@@ -10,10 +10,10 @@
             header("refresh:0;url=Main.html");
             exit;
         }else{
-            echo "使用者名稱或密碼錯誤";
+            echo '<script>alert("使用者名稱或密碼錯誤")</script>' ;
         }
         }else{
-            echo "表單填寫不完整";
+            echo '<script>alert("表單填寫不完整")</script>';
         }
     }
    

@@ -1,10 +1,13 @@
 <?php
-    if(!isset($_POST["submit"])){
+    if(isset($_POST["submit"])){
         include('connect.php');
-        $note = $_POST['note'];
+        $note = $_POST['notes'];
         if ($note){
             $sql =  "INSERT INTO message (comments) VALUES('$note')";
-            $res = $ma1->insertl($link,$sql);
+            $result = mysqli_query($con,$sql);
+            if(mysqli_query($con,$sql)){
+                echo"<script>alert("留言成功")</script>";
+            }
         }else{
             echo 'error';
         }

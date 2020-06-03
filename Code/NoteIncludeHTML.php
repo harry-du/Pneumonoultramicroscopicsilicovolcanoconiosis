@@ -12,6 +12,11 @@
         @import "Layout.css";
     </style>
     <title>詳情</title>
+    <script>
+        $(document).ready(function(){
+            $("#notes").append(loadDoc)
+        })
+    </script>
 </head>
 
 <body>
@@ -22,12 +27,24 @@
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
             <textarea id="rnote" style="height: 500px; width: 900px; resize: none;"></textarea>
-            <textarea id="wnote" style="height: 100px; width: 900px; resize: none;"></textarea>
-            <input name="submit" type="submit" value="留言" class="btn btn-outline-secondary" style="margin-right: 15%;">
+            <input type = "text" id = "notes">
+            <input name="submit" type="submit" value="提交" class="btn btn-outline-secondary">
         </form>
     </div>
 </body>
 
 </html>
 <?php
+    $cid = $_POST['c_id'];
+    if(isset($_POST["submit"])){
+        include('connect.php');
+        $note = $_POST['notes'];
+        if ($note){
+            $sql =  "INSERT INTO message (c_id, comments) VALUES('$id', '$note')";
+            $result = mysqli_query($con,$sql);
+            if(mysqli_query($con,$sql)){
+                echo"<script>alert("留言成功")</script>";
+            }
+        }
+    }
 ?>

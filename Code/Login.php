@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_POST["submit"])){
+    if(isset($_POST["submit"])){
         include('connect.php');
         $id = $_POST['id'];
         $password = $_POST['password'];

@@ -12,11 +12,6 @@
         @import "Layout.css";
     </style>
     <title>詳情</title>
-    <script>
-        $(document).ready(function(){
-            $("#notes").append(loadDoc)
-        })
-    </script>
 </head>
 
 <body>

@@ -25,9 +25,9 @@
         <h1 align=center>留言板</h1>
     </header>
     <div class="container">
-        <form action="NoteIncludeHTML.php" method="POST" name="Note">
+        <form action="Notes.php" method="POST" name="Note">
             <textarea id="rnote" style="height: 500px; width: 900px; resize: none;"></textarea>
-            <input type = "text" id = "notes">
+            <input type = "text" name = "notes">
             <input name="submit" type="submit" value="提交" class="btn btn-outline-secondary">
         </form>
     </div>
@@ -35,15 +35,15 @@
 
 </html>
 <?php
-    if(isset($_POST["submit"])){
-        include('connect.php');
-        $note = $_POST['notes'];
-        if ($note){
-            $sql =  "INSERT INTO message (comments) VALUES('$note')";
-            $result = mysqli_query($con,$sql);
-            if(mysqli_query($con,$sql)){
-                echo"<script>alert('留言成功')</script>";
-            }
-        }
-    }
+    // if(isset($_POST["submit"])){
+    //     include('connect.php');
+    //     $note = $_POST['notes'];
+    //     if ($note){
+    //         $sql =  "INSERT INTO `message` (`comments`) VALUES(\"$note\")";
+    //         $result = mysqli_query($con,$sql);
+    //         if(mysqli_query($con,$sql)){
+    //             echo"<script>alert('留言成功')</script>";
+    //         }
+    //     }
+    // }
 ?>

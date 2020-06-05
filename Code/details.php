@@ -77,36 +77,6 @@
 </body>
 </html>
 <?php
-    // header("Content-Type: text/html; charset=utf8");
-    // if(!isset($_POST["submit"])){
-    //     exit("錯誤執行");
-    // }//檢測是否有submit操作 
-    include('connect.php');//連結資料庫
-    include('timetable.html');
-    $id = $_POST['id'];//post獲得使用者名稱錶單值
-    $passowrd = $_POST['password'];//post獲得使用者密碼單值
-    $course;
-    password_hash($passowrd, PASSWORD_DEFAULT);
-    
-    if ($id>=30){//如果使用者名稱和密碼都不為空
-        echo "<script>alert('加選失敗')</script>";
-        
-    }
-    else {
-        echo"<script>alert('加選成功')</script>";
-        $('.qwe').append
-    }
-    //    $sql =  "SELECT * FROM login WHERE sid ='$id' AND pwd='$passowrd'";
-    //    $result = mysqli_query($con,$sql);//執行sql
-    // $rows=mysqli_num_rows($result);//返回一個數值
-    if($result->num_rows > 0){//0 false 1 true
-        header("refresh:0;url=Main.html");
-        exit;
-    }else{
-        echo "使用者名稱或密碼錯誤";
-    }
-
-    }else{//如果使用者名稱或密碼有空
-        echo "表單填寫不完整";
-    }
+   
+  
 ?>

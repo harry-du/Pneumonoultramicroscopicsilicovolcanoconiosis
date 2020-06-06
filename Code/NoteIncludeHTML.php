@@ -30,10 +30,10 @@
 </html>
 <?php
     include('connect.php');
-    $sql1 =  "SELECT comments FROM `message`;"; 
-    $result = mysqli_query($con,$sql1) or die("Query Error");
-    $total_fields=mysqli_num_fields($result);
-    $row = mysqli_fetch_array($result);
+    $sql2 =  "SELECT comments FROM `message`;"; 
+    $result = mysqli_query($con,$sql2) or die("Query Error");
+    $total_fields=mysqli_num_rows($result);
+    $row = mysqli_fetch_assoc($result);
     for ($i = 0; $i < $total_fields; $i++) {
         echo"<p>".$row['comments']. "</p>";
     }

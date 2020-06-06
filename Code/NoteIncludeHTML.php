@@ -35,6 +35,6 @@
     $total_fields=mysqli_num_fields($result);
     $row = mysqli_fetch_array($result);
     for ($i = 0; $i < $total_fields; $i++) {
-        echo"<textarea>".$row['comments']. "</textarea>";
+        echo"<p>".$row['comments']. "</p>";
     }
 ?>

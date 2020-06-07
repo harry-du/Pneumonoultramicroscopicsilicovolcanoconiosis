@@ -1,9 +1,8 @@
 <?php
     include('connect.php');
-    $sql8 = "DELETE FROM registraion WHERE c_id = '1318'";
-    $result8 =mysqli_query($con,$sql8) or die("<script>alert<'執行錯誤'></script>");
-    header("refresh:0; url = timetable.php");
-    $sql9 = " Select  SUM(credit) FROM registration JOIN course WHERE s_id = '$id' AND course.c_id = registration.c_id";
+    $sql8 = "DELETE FROM registraion WHERE c_id = '$c'";
+    $result8 =mysqli_query($con,$sql8) ;//or die("<script>alert<'執行錯誤'></script>");
+    $sql9 = " SELECT  SUM(credit) FROM registration INNER JOIN course WHERE (s_id = 'D0606') AND (course.c_id = registration.c_id)";
     $result9 = mysqli_query($con,$sql9);
     $SUM = $_REQUEST['SUM(credit)']; 
     if($SUM<9) {

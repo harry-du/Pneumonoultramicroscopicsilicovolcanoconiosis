@@ -4,9 +4,12 @@
     mysqli_query($con, $sqls);
     if(isset($_POST['notes'])){
         $note = $_POST['notes'];
-        if ($note != ""){
-            $sql1 =  "INSERT INTO message (`comments`) VALUES('$note')";
-            $result2 = mysqli_query($con,$sql1) or die("<script>alert('一樣的東西只能留一次~~')</script>");
+        $star = $_POST['star'];
+        if ($note != "" && isset($_POST['star'])){
+            $sql =  "INSERT INTO message (`star`, `comments`) VALUES('$star', '$note')";
+            $sql2 = "SELECT AVG(star) FROM messages";
+            $result = mysqli_query($con,$sql) or die("<script>alert('一樣的東西只能留一次~~')</script>");
+            $result2 = mysqli_query($con,$sql2);
             echo '<script>alert("留言成功")</script>';
             header("refresh:0; url = NoteIncludeHTML.php");
         }else{

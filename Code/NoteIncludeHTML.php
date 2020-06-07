@@ -21,7 +21,17 @@
     </header>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
-            <input type = "text" name = "notes">
+            <input type="text" name="notes">
+            <input type="radio" id="1" name="star" value="1">
+            <label for="1">1*</label>
+            <input type="radio" id="2" name="star" value="2">
+            <label for="2">2*</label>
+            <input type="radio" id="3" name="star" value="3">
+            <label for="3">3*</label>
+            <input type="radio" id="4" name="star" value="4">
+            <label for="4">4*</label>
+            <input type="radio" id="5" name="star" value="5">
+            <label for="5">5*</label>
             <input name="submit" type="submit" value="提交" class="btn btn-outline-secondary">
         </form>
     </div>

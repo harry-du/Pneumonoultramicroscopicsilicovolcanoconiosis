@@ -159,14 +159,15 @@
         echo "</table>";
     echo "</section>";
     ?>
-    <nav>
+    <br><br>
+    <footer>
         <ul align = "center">
             <h>注意事項</h>
             <li>1.學分上限為30</li>
             <li>2.學分下限為9</li>
             <li>3.深腕專題demo的時間</li>
         </ul>
-    </nav>
+    </footer>
 </body>
 
 </html>

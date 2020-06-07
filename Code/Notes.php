@@ -6,7 +6,7 @@
         $note = $_POST['notes'];
         if ($note != ""){
             $sql1 =  "INSERT INTO message (`comments`) VALUES('$note')";
-            $result2 = mysqli_query($con,$sql1) or die("<script>alert('只能留一次')</script>");
+            $result2 = mysqli_query($con,$sql1) or die("<script>alert('一樣的東西只能留一次~~')</script>");
             echo '<script>alert("留言成功")</script>';
             header("refresh:0; url = NoteIncludeHTML.php");
         }else{

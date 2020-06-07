@@ -33,8 +33,9 @@
     $sql2 =  "SELECT `comments` FROM `message`"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);
-    $row = mysqli_fetch_assoc($result);
+    
     for ($i = 0; $i < $total_fields; $i++) {
+        $row = mysqli_fetch_assoc($result);
         echo"<p>".$row['comments']. "</p>";
     }
 ?>

@@ -40,7 +40,7 @@
 </html>
 <?php
     include('connect.php');
-    $sql2 =  "SELECT `comments` FROM `message`"; 
+    $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);
     for ($i = 0; $i < $total_fields; $i++) {

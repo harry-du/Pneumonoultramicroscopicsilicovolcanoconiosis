@@ -13,7 +13,7 @@
 
     $sql1 = " Select  SUM(credit) FROM registration JOIN course WHERE s_id = '$id' AND course.c_id = registration.c_id";//"select s_id,sum(credit) as t_credit from registration group by s_id";
     $sql3 = " Select (c_id, week, time) FROM time JOIN registration WHERE $c_id<> AND week = week AND time = time";
-    $sql4 = " Select now_member max_member FROM course WHERE c_id = '$c_id'";
+    $sql4 = " Select (now_member, max_member) FROM course WHERE c_id = '$c_id'";
     //$sql5 = " Select max_member FROM course WHERE c_id = '$c_id'";
     //$sql6 = " Select ";
     

@@ -30,7 +30,7 @@
 </html>
 <?php
     include('connect.php');
-    $sql2 =  "SELECT `comments` FROM `message`;"; 
+    $sql2 =  "SELECT `comments` FROM `message`"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);
     $row = mysqli_fetch_assoc($result);

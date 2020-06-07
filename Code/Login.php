@@ -1,6 +1,8 @@
 <?php
     if(isset($_POST["submit"])){
         include('connect.php');
+        session_start();
+        $_SESSION['id'] = $_POST['id'];
         $id = $_POST['id'];
         $password = $_POST['password'];
         if ($id && $password){

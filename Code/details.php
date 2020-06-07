@@ -52,7 +52,7 @@
                 <tr>
                   <th scope="row"></th>
                   <td>評量方式</td>
-                  <td>平時成績:<br>期中成績:<br>期末成績:</td>
+                  <td>平時成績:40%<br>期中成績:30%<br>期末成績:30%</td>
                   
                 </tr>
                 <tr>
@@ -63,7 +63,7 @@
                 </tr>
               </tbody>
             </table>
-            <form action="details.php" method="post" name="add">
+            <form action="add.php" method="post" name="add">
               <input type="submit" value="加選" class="btn btn-outline-success">
           </form>  
           </div>

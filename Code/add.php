@@ -5,21 +5,26 @@
     // }//檢測是否有submit操作 
     include('connect.php');
     include('login.php');
+
     
-    $id ="D0606"; //$_POST['id'];
+    
+    $id = "D0606"; //$_POST['s_id'];
     $c_id = "1274";//$_POST['c_id'];
     $credit =(int) "3";//$_POST['credit'];
     //$passowrd = $_POST['password'];
 
     $sql1 = " Select  SUM(credit) FROM registration JOIN course WHERE s_id = '$id' AND course.c_id = registration.c_id";//"select s_id,sum(credit) as t_credit from registration group by s_id";
-    $sql3 = " Select (c_id, week, time) FROM time JOIN registration WHERE $c_id<> AND week = week AND time = time";
+    $sql3 = " Select (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";
     $sql4 = " Select now_member max_member FROM course WHERE c_id = '$c_id'";
-    //$sql5 = " Select max_member FROM course WHERE c_id = '$c_id'";
-    //$sql6 = " Select ";
+    $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = 'D0606'";
+    $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
+    
     
     $result1 = mysqli_query($con,$sql1);
     $result3 = mysqli_query($con,$sql3);
     $result4 = mysqli_query($con,$sql4);
+    $result5 = mysqli_query($con,$sql5);
+    $result6 = mysqli_query($con,$sql6);
     if(!$result4)
 	{
 		echo ("Error: ".mysqli_error($con));
@@ -28,13 +33,17 @@
 	//
     //$result5 = mysqli_query($con,$sql5);
     //$result5 = mysqli_query($sq6,$con);
-    $row1 = mysqli_fetch_assoc($result4);
-    $now_member =intval($row1['now_member']);
-    $max_member =intval($row1['max_member']);
+    $row1 = mysqli_fetch_array($result4);
+    $now_member =intval($row1[0]);
+    $max_member =intval($row1[1]);
     $row2 = mysqli_fetch_assoc($result1);
     $SUM_credit = intval($row2['SUM(credit)']);
+    $num1 = mysqli_num_rows($result5);
 
-    echo "<script>alert('$max_member $now_member')</script>";
+    for($i=0;$i<$num1;$i++)
+    {
+        $array[$i] = mysqli_fetch_array($result5);
+    }
     
     if ($id!=null){
         if($now_member+1>$max_member){
@@ -42,6 +51,10 @@
         }
         else if($credit+$SUM_credit>=30){
             echo "<script>alert('加選失敗')</script>";
+        }
+        elseif( preg_match($array,$result6) )
+        {
+            echo "<script>alert('課程失敗')</script>";
         }
         else {
             echo"<script>alert('加選成功')</script>";

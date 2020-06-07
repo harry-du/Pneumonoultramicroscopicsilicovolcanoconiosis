@@ -40,7 +40,7 @@
         if($now_member+1>$max_member){
             echo "<script>alert('人數已滿')</script>";
         }
-        else if((int)$credit+(int)mysqli_fetch_row($result1)>=30){
+        else if($credit+$SUM_credit>=30){
             echo "<script>alert('加選失敗')</script>";
         }
         else {

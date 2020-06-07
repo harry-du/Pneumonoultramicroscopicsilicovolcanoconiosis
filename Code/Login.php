@@ -9,7 +9,7 @@
             $sql =  "SELECT s_password FROM student WHERE s_id = '$id' AND s_password = '$password'";
             $result = mysqli_query($con,$sql);
         if($result->num_rows > 0){
-            header("refresh:0; url = Main.html");
+            header("refresh:0; url = Main.php");
             exit;
         }else{
             echo '<script>alert("使用者名稱或密碼錯誤")</script>' ;

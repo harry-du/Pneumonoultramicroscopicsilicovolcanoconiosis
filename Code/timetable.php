@@ -26,79 +26,60 @@
 
 <?php
         include('connect.php');
+        session_start();
         $sql7 = "SELECT * FROM course INNER JOIN registration WHERE (course.c_id = registration.c_id)";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
-                $row = mysqli_fetch_assoc($result7); 
-                $c_id = [];
-                $c_name = [];
-                $credit = [];
-                $RorE = [];
-                $class = [];
-                for($j=0;$j<$num;$j++){
-                    array_push($c_id,$row['c_id']);
-                    array_push($c_name,$row['c_name']);
-                    array_push($credit,$row['credit']);
-                    array_push($RorE,$row['RorE']);
-                    array_push($class,$row['class']);
-                }
-
-                //tid轉tname
-                $t_name = [];                        
-                $sql = "SELECT * FROM teacher INNER JOIN course WHERE (teacher.t_id = course.t_id) ";
-                $result = mysqli_query($con,$sql);
-                $num1 = mysqli_num_rows($result);
-                $row4 = mysqli_fetch_assoc($result);
-                for($k=0;$k<$num;$k++){
-                   array_push($t_name,$row4['t_name']);
-                }
+                //$row = mysqli_fetch_assoc($result7); 
                 
-
                 echo "<table class = 'table-danger table-bordered' width = '1000'>";
                     echo "<thead>";
-                     //開頭
-                    echo "<tr align = center>";
-                    echo "    <th>選課代號</th>";
-                    echo "    <th>課程名稱</th>";
-                    echo "    <th>學分數</th>";
-                    echo "    <th>必選修</th>";
-                    echo "    <th>授課教師</th>";
-                    echo "    <th>開課班級</th>";
-                    echo "    <th>上課時間</th>";
-                    echo "</tr>";
+                        //開頭
+                        echo "<tr align = center>";
+                        echo "    <th>選課代號</th>";
+                        echo "    <th>課程名稱</th>";
+                        echo "    <th>開課班級</th>";
+                        echo "    <th>授課教師</th>";
+                        echo "    <th>學分數</th>";
+                        echo "    <th>必選修</th>";
+                        echo "    <th>上課時間</th>";
+                        echo "</tr>";
 
-                for( $i=0; $i<$num ; $i++) {                                       
-                    echo "<tr align = center>";
-                        echo "    <th>$c_id[$i]</th>";
-                        echo "    <th>$c_name[$i]</th>";
-                        echo "    <th>$credit[$i]</th>";                                    
-                        echo "    <th>$RorE[$i]</th>";
-                        
-                        echo "    <th>$t_name[$i]</th>";
+                        for( $i=0; $i<$num ; $i++) {   
+                            $row = mysqli_fetch_row($result7); 
+                            $c_id = $row[0];
+                            $c_name = $row[1];
+                            $credit = $row[2];
+                            $RorE = $row[3];
+                            $t_name = $row[4];
+                            $class = $row[5];
+                            $time = $row[6];
 
+                            echo "<tr align=center><form>";
+                            echo "<th>$c_id</th>";
+                            echo "<th>$c_name</th>";
+                            echo "<th>$credit</th>";
+                            echo "<th>$RorE</th>";
+                            echo "<th>$t_name</th>";
+                            echo "<th>$class</th>";
 
-                        echo "    <th>$class[$i]</th>";
-
-                        //ctime
-                        echo "    <th>";
-                            $sql = "Select * from time WHERE c_id='$c_id[$i]'";
+                            echo "    <th>";
+                            $sql = "Select * from time WHERE c_id='$c_id'";
                             $result = mysqli_query($con,$sql);
                             while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
                                 echo ($row[1].($row[2]));
                             }
-                        echo "</th>";
+                            echo "</th>";
+                            
+                            echo "    <th>";
+                            echo " <form method='post' action='timetable.php'>";
+                            echo "     <input name='submit' type='submit' value='退選'>";
+                            echo "     <input type='hidden' name='$c_id'>";
+                            echo " </form>";
+                            echo "</th>";
 
-                        //c詳情
-                        echo "    <th>";
-                        echo " <form method='post' action='unselect.php'>";
-                        echo "     <input type='hidden' name='$c_id[$i]'>";
-                        echo "     <input name='submit' type='submit' value='退選'>";
-                        echo " </form>";
-                        echo "</th>";
-                        //表單結束
-                        echo "</tr>";
-                }
-                echo "</thead>";
-
-            echo "</table>";
+                            echo "</from></tr>";
+                        }
+                    echo "<thead>";
+                echo "</table>";
 ?>

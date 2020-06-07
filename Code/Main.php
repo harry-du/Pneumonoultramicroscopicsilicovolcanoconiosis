@@ -34,7 +34,7 @@
     <div class = "row justify-content-end" style = "margin-right:15%">
 
         <label class = "form-inline">
-            <form action = "timetable.html" method = "POST">
+            <form action = "timetable.php" method = "POST">
                 <input class = "btn btn-outline-danger" type = "submit" value = "我的課表">
             </form>
             <form action = "LoginWithHTML.php" method = "post">
@@ -159,14 +159,15 @@
         echo "</table>";
     echo "</section>";
     ?>
-    <nav>
+    <br><br>
+    <footer>
         <ul align = "center">
             <h>注意事項</h>
             <li>1.學分上限為30</li>
             <li>2.學分下限為9</li>
             <li>3.深腕專題demo的時間</li>
         </ul>
-    </nav>
+    </footer>
 </body>
 
 </html>

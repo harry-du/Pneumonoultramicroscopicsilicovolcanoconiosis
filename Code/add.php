@@ -3,12 +3,13 @@
     // if(!isset($_POST["submit"])){
     //     exit("錯誤執行");
     // }//檢測是否有submit操作 
+    session_start();
     include('connect.php');
     include('login.php');
-
     
     
-    $id = "D0606"; //$_POST['s_id'];
+    $_SESSION['id'] = $_POST['id'];
+    $s_id = $_POST['id'];
     $c_id = "1274";//$_POST['c_id'];
     $credit =(int) "3";//$_POST['credit'];
     //$passowrd = $_POST['password'];

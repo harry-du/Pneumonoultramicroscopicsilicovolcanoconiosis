@@ -40,10 +40,11 @@
 </html>
 <?php
     include('connect.php');
-    $sql4 = "SELECT AVG(star) FROM `messages`";
-    $results = mysqli_query($con,$sql4);
-    $avg = mysqli_fetch_array($results);
-    echo $avg;
+    $sql4 = "SELECT AVG(star) FROM `message`";
+    $re = mysqli_query($con,$sql4);
+    $results = mysqli_fetch_row($re);
+    $avg = floatval($results);
+    echo "<p class='container'>評價:".$avg."</p>";
     $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);

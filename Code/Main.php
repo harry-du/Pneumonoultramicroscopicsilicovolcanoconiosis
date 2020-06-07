@@ -34,7 +34,7 @@
     <div class = "row justify-content-end" style = "margin-right:15%">
 
         <label class = "form-inline">
-            <form action = "timetable.html" method = "POST">
+            <form action = "timetable.php" method = "POST">
                 <input class = "btn btn-outline-danger" type = "submit" value = "我的課表">
             </form>
             <form action = "LoginWithHTML.php" method = "post">

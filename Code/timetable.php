@@ -19,37 +19,6 @@
         <h1 align=center>我的課表</h1>
     </header>
     <br>
-    <section class="container">
-        <form action="timetable.php" method="post">
-            <table class="table-danger table-bordered" width="1000" id="qwe">
-                <thead>
-                    <tr align=center>
-                        <td>選課代號</td>
-                        <td>課程名稱</td>
-                        <td>學分數</td>
-                        <td>必選修</td>
-                        <td>授課教師</td>
-                        <td>開課班級</td>
-                        <td>星期</td>
-                        <td>時間</td>
-                    </tr>
-                    <tr align=center>
-                        <td><?php $c_id ?></td>
-                        <td><?php $c_name ?></td>
-                        <td><?php $credit ?></td>
-                        <td><?php $RorE ?></td>
-                        <td><?php $t_id ?></td>
-                        <td><?php $class ?></td>
-                        <td><?php $week ?></td>
-                        <td><?php $time ?></td>
-                        <td align=center><input type="submit" name="submit" value="退選">
-                                         <input type='hidden' value='$c_id'/>
-                        </td>
-                    </tr>
-                </thead>
-            </table>
-        </form>
-    </section>
 </body>
 
 </html>
@@ -57,38 +26,79 @@
 
 <?php
         include('connect.php');
-        $sql = "SELECT course.c_id, student.s_id FROM course INNER JOIN student ON (course.class = student.class) AND (course.RorE = 'M')";
-                $result = mysql_query($sql);
-                $num = mysql_num_rows($result);
-                for( $i=1; $i<=$num ; $i++)
-                {
-                    $row = mysql_fetch_row($result);
-                    $c_id = $row[0];
-                    $c_name = $row[1];
-                    $credit = $row[2];
-                    $RorE = $row[3];
-                    $t_id = $row[4];
-                    $class = $row[5];
-                    $week = $row[6];
-                    $time = $row[7];
+        $sql7 = "SELECT * FROM course INNER JOIN registration WHERE (course.c_id = registration.c_id)";
+                $result7 = mysqli_query($con,$sql7);
+                $num = mysqli_num_rows($result7);
+                $row = mysqli_fetch_assoc($result7); 
+                $c_id = [];
+                $c_name = [];
+                $credit = [];
+                $RorE = [];
+                $class = [];
+                for($j=0;$j<$num;$j++){
+                    array_push($c_id,$row['c_id']);
+                    array_push($c_name,$row['c_name']);
+                    array_push($credit,$row['credit']);
+                    array_push($RorE,$row['RorE']);
+                    array_push($class,$row['class']);
                 }
 
-                $submit = !empty($_GET["submit"]) ? $_GET["submit"] : null;
-
-                $msg = '';
-                if( $submit == '退選')
-                {
-                    $sql = "DELETE FROM 'registraion' WHERE 'c_id'=$c_id";
-                    $msg = "退選成功";
+                //tid轉tname
+                $t_name = [];                        
+                $sql = "SELECT * FROM teacher INNER JOIN course WHERE (teacher.t_id = course.t_id) ";
+                $result = mysqli_query($con,$sql);
+                $num1 = mysqli_num_rows($result);
+                $row4 = mysqli_fetch_assoc($result);
+                for($k=0;$k<$num;$k++){
+                   array_push($t_name,$row4['t_name']);
                 }
-                else
-                {
-                    echo '不正常操作';
-                    return;
+                
+
+                echo "<table class = 'table-danger table-bordered' width = '1000'>";
+                    echo "<thead>";
+                     //開頭
+                    echo "<tr align = center>";
+                    echo "    <th>選課代號</th>";
+                    echo "    <th>課程名稱</th>";
+                    echo "    <th>學分數</th>";
+                    echo "    <th>必選修</th>";
+                    echo "    <th>授課教師</th>";
+                    echo "    <th>開課班級</th>";
+                    echo "    <th>上課時間</th>";
+                    echo "</tr>";
+
+                for( $i=0; $i<$num ; $i++) {                                       
+                    echo "<tr align = center>";
+                        echo "    <th>$c_id[$i]</th>";
+                        echo "    <th>$c_name[$i]</th>";
+                        echo "    <th>$credit[$i]</th>";                                    
+                        echo "    <th>$RorE[$i]</th>";
+                        
+                        echo "    <th>$t_name[$i]</th>";
+
+
+                        echo "    <th>$class[$i]</th>";
+
+                        //ctime
+                        echo "    <th>";
+                            $sql = "Select * from time WHERE c_id='$c_id[$i]'";
+                            $result = mysqli_query($con,$sql);
+                            while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
+                                echo ($row[1].($row[2]));
+                            }
+                        echo "</th>";
+
+                        //c詳情
+                        echo "    <th>";
+                        echo " <form method='post' action='unselect.php'>";
+                        echo "     <input type='hidden' name='$c_id[$i]'>";
+                        echo "     <input name='submit' type='submit' value='退選'>";
+                        echo " </form>";
+                        echo "</th>";
+                        //表單結束
+                        echo "</tr>";
                 }
-                mysql_query($sql) or die('執行錯誤');
+                echo "</thead>";
 
-                echo $msg;
-
-                mysql_close();
+            echo "</table>";
 ?>

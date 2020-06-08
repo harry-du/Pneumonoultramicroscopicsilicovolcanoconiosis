@@ -149,7 +149,7 @@
                     //c詳情
                     echo "    <th>";
                     echo " <form method='post' action='details.php'>";
-                    echo "     <input type='hidden' name='$arrcid[$i]'>";
+                    echo "     <input type='hidden' value='$arrcid[$i]' name='c_id'>";
                     echo "     <input type='submit' value='查詢'>";
                     echo " </form>";
                     echo "</th>";

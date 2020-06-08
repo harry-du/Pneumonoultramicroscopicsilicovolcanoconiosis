@@ -35,7 +35,7 @@
         $sql7 = "SELECT * FROM course INNER JOIN registration WHERE (course.c_id = registration.c_id) AND s_id='$s_id'";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
-                //$row = mysqli_fetch_assoc($result7); 
+                
                 
                 echo "<table class = 'table-danger table-bordered' width = '1000'>";
                     echo "<thead>";
@@ -54,19 +54,28 @@
                             $row = mysqli_fetch_row($result7); 
                             $c_id = $row[0];
                             $c_name = $row[1];
-                            $credit = $row[2];
-                            $RorE = $row[3];
-                            $t_name = $row[4];
-                            $class = $row[5];
+                            $class = $row[2];
+                            $t_id = $row[3];
+                            $credit = $row[4];
+                            $RorE = $row[5];
                             $time = $row[6];
+                            
 
                             echo "<tr align=center>";
                             echo "<th>$c_id</th>";
                             echo "<th>$c_name</th>";
-                            echo "<th>$credit</th>";
-                            echo "<th>$RorE</th>";
-                            echo "<th>$t_name</th>";
                             echo "<th>$class</th>";
+
+                            $sql1 = "SELECT t_name FROM teacher WHERE t_id ='$t_id'";
+                            $result1 = mysqli_query($con,$sql1);
+                            $row1 = mysqli_fetch_assoc($result1);
+                            $t_name = $row1['t_name'];
+
+                            echo "<th>$t_name</th>";
+                            echo "<th>$credit</th>";
+
+
+                            echo "<th>$RorE</th>";
 
                             echo "    <th>";
                             $sql = "Select * from time WHERE c_id='$c_id'";
@@ -99,6 +108,11 @@
                     $result5 = mysqli_query($con,$sql5);
                     $row5 = mysqli_fetch_assoc($result5);
                     $c = $row5['credit'];
+                    $sql3 = " SELECT RorE FROM course WHERE c_id ='$id'";
+                    $result3 = mysqli_query($con,$sql3);
+                    $row3 = mysqli_fetch_assoc($result3);
+                    $R = $row3['RorE'];
+                    
                     if($SUM_credit-$c<9) {
                         echo '<script>alert("無法退選")</script>';
                         header("refresh:0; url = timetable.php");
@@ -106,12 +120,14 @@
                     else {
                         $sql8 = "DELETE FROM registration WHERE c_id = '$id'";
                         $result8 = mysqli_query($con,$sql8) or die("<script>alert('執行錯誤')</script>");
+                        if($R == 'M') {
+                            echo '<script>alert("這是必修")</script>';
+                        }
                         echo '<script>alert("退選成功")</script>';
                         $sql4 = "UPDATE course SET now_member=now_member-1 WHERE c_id = '$id'";
                         mysqli_query($con,$sql4);
                         header("refresh:0; url = timetable.php");
                     }
-                }
-
-                
+                    
+                }   
 ?>

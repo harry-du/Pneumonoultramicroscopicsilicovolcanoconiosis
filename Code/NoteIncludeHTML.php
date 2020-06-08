@@ -24,9 +24,10 @@
         $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
         $re = mysqli_query($con,$sql4);
         $results = mysqli_fetch_array($re);
-        print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
-        printf ("%.2f", $results['avgs']);
-        print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
+        //print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
+        //printf ("%.2f", $results['avgs']);
+        //print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
+        printf("<div class='star-ratings-sprite'><span style='width:$results[avgs]' class='star-ratings-sprite-rating'></span></div>")
     ?>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">

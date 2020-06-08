@@ -81,11 +81,8 @@
                 $total_fields=mysqli_num_rows($result);
                 for ($i = 0; $i < $total_fields; $i++) {
                     $row = mysqli_fetch_assoc($result);
-                    if($row['star']==5){
-                        echo"<div style=\'border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;\'><p class='container'>".$row['comments']."<br>"."<span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★     </span>".$row['ntime']. "</p></div><br>";
-                        echo"div class=\"star-ratings-sprite\"><span style=\"width:100%\" class=\"star-ratings-sprite-rating\"></span></div>";
-                    }
-                    
+                    echo"<div style=\'border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;\'><p class='container'>".$row['comments']."<br>"."<span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>".$row['star']."★     </span>".$row['ntime']. "</p></div><br>";
+
                 }
             ?>
             <br><br>

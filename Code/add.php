@@ -3,14 +3,15 @@
     // if(!isset($_POST["submit"])){
     //     exit("錯誤執行");
     // }//檢測是否有submit操作 
-    session_start();
     include('connect.php');
     include('login.php');
     
-    
-    //$_SESSION['id'] = $_POST['id'];
-    $s_id = "D0606";//$_POST['id'];
-    $c_id = "1274";//$_POST['c_id'];
+    $s_id = $_SESSION['s_id'];
+    // $s_id = "D0606";//$_POST['id'];
+    $c_id = $_POST['c_id'];
+    // echo $c_id;
+    // echo $s_id;
+    // $c_id = "1274";//$_POST['c_id'];
     $credit =(int) "3";//$_POST['credit'];
     //$passowrd = $_POST['password'];
 
@@ -50,24 +51,23 @@
     
     if ($s_id!=null){
         if($now_member+1>$max_member){
-            echo "<script>alert('人數已滿');window.location.href='details.html';</script>";
+            echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
         }
         else if($credit+$SUM_credit>30){
-            echo "<script>alert('加選失敗');window.location.href='details.html';</script>";
+            echo "<script>alert('加選失敗');window.location.href='details.php';</script>";
         }
         else if(preg_match($array,$result6)){
-            echo "<script>alert('課程失敗');window.location.href='details.html';</script>";
+            echo "<script>alert('課程失敗');window.location.href='details.php';</script>";
         }
         else if($result7 !=null ){
-            echo "<script>alert('衝堂');window.location.href='details.html';</script>";
+            echo "<script>alert('衝堂');window.location.href='details.php';</script>";
         }
         else {
-            
-            echo"<script>alert('加選成功');window.location.href='details.html';</script>";
-            $sql2 = "INSERT INTO registration(c_id,s_id) VALUES('c_id','s_id')";
+            $sql2 = "INSERT INTO registration(c_id,s_id) VALUES('$c_id','$s_id')";
             mysqli_query($con,$sql2);
             $sql8 = "UPDATE course SET now_member=now_member+1 WHERE c_id = '$c_id'";
             mysqli_query($con,$sql8);
+            echo"<script>alert('加選成功');window.location.href='Main.php';</script>";
         }  
     }
     else {

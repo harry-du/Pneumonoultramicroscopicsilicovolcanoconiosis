@@ -19,19 +19,33 @@
         <h1 align=center>留言板</h1>
     </header>
     <br><br>
+    <?php
+        include('connect.php');
+        $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
+        $re = mysqli_query($con,$sql4);
+        $results = mysqli_fetch_array($re);
+        print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
+        printf ("%.2f", $results['avgs']);
+        print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
+    ?>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
             <input type="text" name="notes">
             <input type="radio" id="1" name="star" value="1">
-            <label for="1">1*</label>
+            <label for="1">1</label>
+            <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <input type="radio" id="2" name="star" value="2">
-            <label for="2">2*</label>
+            <label for="2">2</label>
+            <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <input type="radio" id="3" name="star" value="3">
-            <label for="3">3*</label>
+            <label for="3">3</label>
+            <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <input type="radio" id="4" name="star" value="4">
-            <label for="4">4*</label>
+            <label for="4">4</label>
+            <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <input type="radio" id="5" name="star" value="5">
-            <label for="5">5*</label>
+            <label for="5">5</label>
+            <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
             <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.html'" value="返回"></input>
         </form>
@@ -41,17 +55,11 @@
 </html>
 <?php
     include('connect.php');
-    $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
-    $re = mysqli_query($con,$sql4);
-    $results = mysqli_fetch_array($re);
-    print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
-    printf ("%.2f", $results['avgs']);
-    print("*</p>");
     $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);
     for ($i = 0; $i < $total_fields; $i++) {
         $row = mysqli_fetch_assoc($result);
-        echo"<p class='container'>".$row['comments']. "</p>";
+        echo"<div><p class='container'>".$row['comments']. "</p></div>";
     }
 ?>

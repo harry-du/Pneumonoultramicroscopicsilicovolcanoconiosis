@@ -69,19 +69,21 @@
             <br><br>
             <textarea placeholder="請輸入留言..." name="notes" style="height: 30vh; width: 100%; padding: 0;"></textarea>
             <br><br>
+            <div style="float:right">
+            <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
+            <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.html'" value="返回"></input>
+            </div>
+            <br><br>
             <?php
                 include('connect.php');
-                $sql2 =  "SELECT `comments` FROM `message` ORDER BY `ntime` DESC"; 
+                $sql2 =  "SELECT `comments`,`star`,`ntime` FROM `message` ORDER BY `ntime` DESC"; 
                 $result = mysqli_query($con,$sql2) or die("Query Error");
                 $total_fields=mysqli_num_rows($result);
                 for ($i = 0; $i < $total_fields; $i++) {
                     $row = mysqli_fetch_assoc($result);
-                    echo"<div style=\'border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;\'><p class='container'>".$row['comments']. "</p></div>";
+                    echo"<div style=\'border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;\'><p class='container'>".$row['comments']."<br>".$row['star']."<span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★     </span>".$row['ntime']. "</p></div><br>";
                 }
             ?>
-            <br><br>
-            <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
-            <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.html'" value="返回"></input>
             <br><br>
         </form>
     </div>

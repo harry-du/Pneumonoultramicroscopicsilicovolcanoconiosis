@@ -9,6 +9,23 @@
     <script type="text/javascript" src="jquery.js"></script>
     <style type="text/css">
         @import "Layout.css";
+        .star-ratings-sprite {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+            font-size: 0;
+            height: 21px;
+            line-height: 0;
+            overflow: hidden;
+            text-indent: -999em;
+            width: 110px;
+            margin: 0 auto;
+            &-rating {
+                background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+                background-position: 1 5;
+                float: left;
+                height: 21px;
+                display:block;
+            }
+        }
     </style>
     <title>詳情</title>
 </head>
@@ -24,14 +41,16 @@
         $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
         $re = mysqli_query($con,$sql4);
         $results = mysqli_fetch_array($re);
-        //print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
-        //printf ("%.2f", $results['avgs']);
-        //print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
-        printf("<div class='star-ratings-sprite'><span style='width:$results[avgs]' class='star-ratings-sprite-rating'></span></div>")
+        print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
+        printf ("%.2f", $results['avgs']);
+        print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
+        // print("<div class='star-ratings-sprite'><span style='width:");
+        // print($results['avgs']);
+        // print("%'class='star-ratings-sprite-rating'></span></div>");
     ?>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
-            <input type="text" name="notes">
+            <p>評分: </p>
             <input type="radio" id="1" name="star" value="1">
             <label for="1">1</label>
             <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
@@ -47,20 +66,25 @@
             <input type="radio" id="5" name="star" value="5">
             <label for="5">5</label>
             <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
+            <br><br>
+            <textarea placeholder="請輸入留言..." name="notes" style="height: 30vh; width: 100%; padding: 0;"></textarea>
+            <br><br>
+            <?php
+                include('connect.php');
+                $sql2 =  "SELECT `comments` FROM `message` ORDER BY `ntime` DESC"; 
+                $result = mysqli_query($con,$sql2) or die("Query Error");
+                $total_fields=mysqli_num_rows($result);
+                for ($i = 0; $i < $total_fields; $i++) {
+                    $row = mysqli_fetch_assoc($result);
+                    echo"<div style=\'border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;\'><p class='container'>".$row['comments']. "</p></div>";
+                }
+            ?>
+            <br><br>
             <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
             <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.html'" value="返回"></input>
+            <br><br>
         </form>
     </div>
 </body>
 
 </html>
-<?php
-    include('connect.php');
-    $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 
-    $result = mysqli_query($con,$sql2) or die("Query Error");
-    $total_fields=mysqli_num_rows($result);
-    for ($i = 0; $i < $total_fields; $i++) {
-        $row = mysqli_fetch_assoc($result);
-        echo"<div><p class='container'>".$row['comments']. "</p></div>";
-    }
-?>

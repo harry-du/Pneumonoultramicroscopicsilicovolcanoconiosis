@@ -74,7 +74,7 @@
                             echo "    <th>";
                             echo " <form method='post' action='timetable.php'>";
                             echo "     <input name='submit' type='submit' value='退選'>";
-                            echo "     <input type='hidden' name='$c_id'>";
+                            echo "     <input type='hidden' value='$c_id'  name='c_id'>";
                             echo " </form>";
                             echo "</th>";
 
@@ -84,17 +84,20 @@
                 echo "</table>";
 
 
-                if(isset($_POST['submit'])) {                   
+                if(isset($_POST['submit'])) {     
+                    $id = $_POST['c_id'];              
                     $sql9 = " SELECT  SUM(credit) FROM registration INNER JOIN course WHERE (s_id = 'D0316') AND (course.c_id = registration.c_id)";
                     $result9 = mysqli_query($con,$sql9);
                     $row2 = mysqli_fetch_assoc($result9);
                     $SUM_credit = intval($row2['SUM(credit)']);
-                    if($credit+$SUM_credit<9) {
+
+                    if($credit+$SUM_credit<=9) {
                         echo '<script>alert("無法退選")</script>';
                         header("refresh:0; url = timetable.php");
                     }
                     else {
-                        $sql8 = "DELETE FROM registration WHERE c_id = '$c_id'";
+                        echo "<script>alert('$id')</script>";
+                        $sql8 = "DELETE FROM registration WHERE c_id = '$id'";
                         $result8 = mysqli_query($con,$sql8) or die("<script>alert('執行錯誤')</script>");
                         echo '<script>alert("退選成功")</script>';
                         header("refresh:0; url = timetable.php");

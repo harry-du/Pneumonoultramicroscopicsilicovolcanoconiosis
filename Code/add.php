@@ -66,6 +66,8 @@
             echo"<script>alert('加選成功');window.location.href='details.html';</script>";
             $sql2 = "INSERT INTO registration(c_id,s_id) VALUES('c_id','s_id')";
             mysqli_query($con,$sql2);
+            $sql8 = "UPDATE course SET now_member=now_member+1 WHERE c_id = '$c_id'";
+            mysqli_query($con,$sql8);
         }  
     }
     else {

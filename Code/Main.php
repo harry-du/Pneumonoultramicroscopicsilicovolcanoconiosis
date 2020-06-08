@@ -107,7 +107,7 @@
                 }
             }
         }
-    }
+    } 
 
         echo "<table class = 'table-danger table-bordered' width = '1000'>";
             echo "<thead>";
@@ -150,6 +150,7 @@
                     echo "    <th>";
                     echo " <form method='post' action='details.php'>";
                     echo "     <input type='hidden' value='$arrcid[$i]' name='c_id'>";
+                    echo "     <input type='hidden' value='$arrclass[$i]' name='c_class'>";
                     echo "     <input type='submit' value='查詢'>";
                     echo " </form>";
                     echo "</th>";

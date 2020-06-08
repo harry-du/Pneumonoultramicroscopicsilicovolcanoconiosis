@@ -1,11 +1,10 @@
 <?php
-
-   
     include('connect.php');
     include('login.php');
     
     $s_id = $_SESSION['s_id'];
     $c_id = $_POST['c_id'];
+    $c_class = $_POST['c_class'];
 
     $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id";
     $sql3 = " SELECT (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";
@@ -41,7 +40,8 @@
     while($array = mysqli_fetch_assoc($result5))
     {
         if (preg_match($array['c_name'],$row4['c_name'])){
-        echo "<script>alert('課程同名');window.location.href='details.php';</script>";}
+            echo "<script>alert('課程同名');window.location.href='details.php';</script>";
+        }
     }
 
     if ($s_id!=null){
@@ -55,7 +55,7 @@
             echo "<script>alert('衝堂');window.location.href='details.php';</script>";
         }
         else {
-            $sql2 = "INSERT INTO registration(c_id,s_id) VALUES('$c_id','$s_id')";
+            $sql2 = "INSERT INTO registration(c_id,s_id,class) VALUES('$c_id','$s_id','$c_class')";
             mysqli_query($con,$sql2);
             $sql8 = "UPDATE course SET now_member=now_member+1 WHERE c_id = '$c_id'";
             mysqli_query($con,$sql8);

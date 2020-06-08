@@ -34,6 +34,7 @@
             <label for="5">5*</label>
             <input name="submit" type="submit" value="提交" class="btn btn-outline-secondary">
         </form>
+        <input type ="button" onclick="javascript:location.href='details.html'" value="返回"></input>
     </div>
 </body>
 

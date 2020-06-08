@@ -51,9 +51,9 @@
         系別：
         <select size=1 onClick="renew(this.selectedIndex);" class="btn btn-outline-info dropdown-toggle">
             <option value = "">請選擇...</option>
-            <option value = "Department of Business Management">企業管理系
+            <option value = "Department of Business Management">企業管理學系
             <option value = "General Education">通識
-            <option value = "Department of Information Engineering">資訊工程系
+            <option value = "Department of Information Engineering">資訊工程學系
         </select>
 
         班級：

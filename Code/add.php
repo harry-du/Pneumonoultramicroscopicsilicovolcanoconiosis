@@ -41,20 +41,19 @@
     $num1 = mysqli_num_rows($result5);
     $row3 = mysqli_fetch_assoc($result8);
     $credit = intval($row3['credit']);
-    for($i=0;$i<$num1;$i++)
+    $row4 = mysqli_fetch_assoc($result6);
+    while($array = mysqli_fetch_assoc($result5))
     {
-        $array[$i] = mysqli_fetch_array($result5);
+        if (preg_match($array['c_name'],$row4['c_name'])){
+        echo "<script>alert('課程同名');window.location.href='details.php';</script>";}
     }
-    
+    $c_name = $array['c_name'];
     if ($s_id!=null){
         if($now_member+1>$max_member){
             echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
         }
         else if($credit+$SUM_credit>30){
             echo "<script>alert('加選失敗');window.location.href='details.php';</script>";
-        }
-        else if(preg_match($array,$result6)){
-            echo "<script>alert('課程失敗');window.location.href='details.php';</script>";
         }
         else if($result7 !=null ){
             echo "<script>alert('衝堂');window.location.href='details.php';</script>";

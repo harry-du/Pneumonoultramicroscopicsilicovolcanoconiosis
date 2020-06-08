@@ -1,18 +1,16 @@
 <?php
-// header("Content-Type: text/html; charset=utf8");
-    // if(!isset($_POST["submit"])){
-    //     exit("錯誤執行");
-    // }//檢測是否有submit操作 
+
+   
     include('connect.php');
     include('login.php');
     
     $s_id = $_SESSION['s_id'];
     $c_id = $_POST['c_id'];
 
-    $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id";//"select s_id,sum(credit) as t_credit from registration group by s_id";
+    $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id";
     $sql3 = " SELECT (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";
     $sql4 = " SELECT now_member, max_member FROM course WHERE c_id = '$c_id'";
-    $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = 'D0606'";
+    $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = '$s_id'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
     $sql7 = " SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN course on time.c_id = course.c_id AND course.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time; ";
     $sql8 = " SELECT credit from course where course.c_id = '$c_id'";
@@ -30,9 +28,7 @@
 		echo ("Error: ".mysqli_error($con));
 		exit();
 	}
-	//
-    //$result5 = mysqli_query($con,$sql5);
-    //$result5 = mysqli_query($sq6,$con);
+	
     $row1 = mysqli_fetch_array($result4);
     $now_member =intval($row1[0]);
     $max_member =intval($row1[1]);
@@ -47,7 +43,7 @@
         if (preg_match($array['c_name'],$row4['c_name'])){
         echo "<script>alert('課程同名');window.location.href='details.php';</script>";}
     }
-    $c_name = $array['c_name'];
+
     if ($s_id!=null){
         if($now_member+1>$max_member){
             echo "<script>alert('人數已滿');window.location.href='details.php';</script>";

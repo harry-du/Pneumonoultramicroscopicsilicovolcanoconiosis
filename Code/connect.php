@@ -6,5 +6,5 @@
     if(!$con){
         die("can't connect".mysql_error());
     }
-    mysqli_select_db($con, 'cooselesson');
+    mysqli_select_db($con, 'chooselesson');
 ?>

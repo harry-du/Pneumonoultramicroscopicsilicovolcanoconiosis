@@ -30,8 +30,9 @@
 
 <?php
         include('connect.php');
-        session_start();
-        $sql7 = "SELECT * FROM course INNER JOIN registration WHERE (course.c_id = registration.c_id)";
+        
+        $s_id = $_SESSION['s_id'];
+        $sql7 = "SELECT * FROM course INNER JOIN registration WHERE (course.c_id = registration.c_id) AND s_id='$s_id'";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
                 //$row = mysqli_fetch_assoc($result7); 
@@ -90,7 +91,7 @@
 
                 if(isset($_POST['submit'])) {     
                     $id = $_POST['c_id'];              
-                    $sql9 = " SELECT  SUM(credit) FROM registration INNER JOIN course WHERE (s_id = 'D0316') AND (course.c_id = registration.c_id)";
+                    $sql9 = " SELECT  SUM(credit) FROM registration INNER JOIN course WHERE (s_id = '$s_id') AND (course.c_id = registration.c_id)";
                     $result9 = mysqli_query($con,$sql9);
                     $row2 = mysqli_fetch_assoc($result9);
                     $SUM_credit = intval($row2['SUM(credit)']);
@@ -100,7 +101,6 @@
                         header("refresh:0; url = timetable.php");
                     }
                     else {
-                        echo "<script>alert('$id')</script>";
                         $sql8 = "DELETE FROM registration WHERE c_id = '$id'";
                         $result8 = mysqli_query($con,$sql8) or die("<script>alert('執行錯誤')</script>");
                         echo '<script>alert("退選成功")</script>';

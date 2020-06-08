@@ -43,7 +43,7 @@
     $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
     $re = mysqli_query($con,$sql4);
     $results = mysqli_fetch_array($re);
-    echo "<p class='container'>評價:".$results['avgs']."</p>";
+    echo "<p class='container'>評價:".$results['avgs']."*</p>";
     $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);

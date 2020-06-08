@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +18,7 @@
     <header>
         <h1 align=center>留言板</h1>
     </header>
+    <br><br>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
             <input type="text" name="notes">
@@ -32,9 +32,9 @@
             <label for="4">4*</label>
             <input type="radio" id="5" name="star" value="5">
             <label for="5">5*</label>
-            <input name="submit" type="submit" value="提交" class="btn btn-outline-secondary">
+            <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
+            <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.html'" value="返回"></input>
         </form>
-        <input type ="button" onclick="javascript:location.href='details.html'" value="返回"></input>
     </div>
 </body>
 
@@ -44,7 +44,9 @@
     $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
     $re = mysqli_query($con,$sql4);
     $results = mysqli_fetch_array($re);
-    echo "<p class='container'>評價:".$results['avgs']."*</p>";
+    print "<p style='font-size:30px;' class='container'>評價:";
+    printf ("%.2f", $results['avgs']);
+    print("*</p>");
     $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 
     $result = mysqli_query($con,$sql2) or die("Query Error");
     $total_fields=mysqli_num_rows($result);

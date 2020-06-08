@@ -1,10 +1,17 @@
 <?php
     include('connect.php');
-    include('login.php');
+    // include('login.php');
+    session_start();
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $s_id = $_SESSION['s_id'];
+        $c_id = $_POST['c_id'];
+        $c_class = $_POST['c_class'];
+    }else{
+        $s_id = ' ';
+        $c_id = ' ';
+        $c_class = ' ';
+    }
     
-    $s_id = $_SESSION['s_id'];
-    $c_id = $_POST['c_id'];
-    $c_class = $_POST['c_class'];
 
     $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id";
     $sql3 = " SELECT (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";

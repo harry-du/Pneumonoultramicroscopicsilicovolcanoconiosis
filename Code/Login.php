@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_POST["submit"])){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
         include('connect.php');
         $id = $_POST['id'];
         $password = $_POST['password'];

@@ -16,10 +16,10 @@
 
     $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id";//"select s_id,sum(credit) as t_credit from registration group by s_id";
     $sql3 = " SELECT (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";
-    $sql4 = " SELECT now_member max_member FROM course WHERE c_id = '$c_id'";
+    $sql4 = " SELECT now_member, max_member FROM course WHERE c_id = '$c_id'";
     $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = 'D0606'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
-    $sql7 = "SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN course on time.c_id = course.c_id course.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time; ";
+    $sql7 = "SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN course on time.c_id = course.c_id AND course.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time; ";
     
     
     $result1 = mysqli_query($con,$sql1);

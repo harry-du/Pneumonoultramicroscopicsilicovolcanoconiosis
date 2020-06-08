@@ -8,18 +8,18 @@
     include('login.php');
     
     
-    $_SESSION['id'] = $_POST['id'];
-    $s_id = $_POST['id'];
+    //$_SESSION['id'] = $_POST['id'];
+    $s_id = "D0606";//$_POST['id'];
     $c_id = "1274";//$_POST['c_id'];
     $credit =(int) "3";//$_POST['credit'];
     //$passowrd = $_POST['password'];
 
-    $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$id' AND course.c_id = registration.c_id";//"select s_id,sum(credit) as t_credit from registration group by s_id";
+    $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id";//"select s_id,sum(credit) as t_credit from registration group by s_id";
     $sql3 = " SELECT (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";
     $sql4 = " SELECT now_member max_member FROM course WHERE c_id = '$c_id'";
     $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = 'D0606'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
-    $sql7 = "SELECT * FROM (SELECT Day,Time FROM time WHERE Code = '$cod') a INNER JOIN (SELECT time.Day,time.Time FROM time JOIN class on time.Code = class.Code WHERE class.Person_id = '$ac') b WHERE a.Day = b.Day AND a.Time = b.Time; ";
+    $sql7 = "SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN course on time.c_id = course.c_id course.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time; ";
     
     
     $result1 = mysqli_query($con,$sql1);
@@ -48,7 +48,7 @@
         $array[$i] = mysqli_fetch_array($result5);
     }
     
-    if ($id!=null){
+    if ($s_id!=null){
         if($now_member+1>$max_member){
             echo "<script>alert('人數已滿');window.location.href='details.html';</script>";
         }

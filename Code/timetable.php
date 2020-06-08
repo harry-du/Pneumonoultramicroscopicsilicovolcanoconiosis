@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+    session_start();
+    //要用s_id請打$_SESSION['s_id']
+?>
 <html>
 
 <head>

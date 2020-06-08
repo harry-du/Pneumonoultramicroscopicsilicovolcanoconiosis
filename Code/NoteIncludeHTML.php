@@ -44,7 +44,7 @@
     $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
     $re = mysqli_query($con,$sql4);
     $results = mysqli_fetch_array($re);
-    print "<p style='font-size:25px;' class='container'>評價:";
+    print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
     printf ("%.2f", $results['avgs']);
     print("*</p>");
     $sql2 =  "SELECT `comments` FROM `message` ORDER BY `datetime` DESC"; 

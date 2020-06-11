@@ -41,7 +41,7 @@
             <form action = "timetable.php" method = "POST">
                 <input class = "btn btn-outline-danger" type = "submit" value = "我的課表">
             </form>
-            <form action = "LoginWithHTML.php" method = "post">
+            <form action = "NewLoginWithHTML.php" method = "post">
                 <input class = "btn btn-outline-secondary" type = "submit" value = "Logout">
             </form>
         </label>

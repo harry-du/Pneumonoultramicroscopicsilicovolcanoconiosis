@@ -41,6 +41,7 @@
             <form action = "timetable.php" method = "POST">
                 <input class = "btn btn-outline-danger" type = "submit" value = "我的課表">
             </form>
+            &emsp;
             <form action = "NewLoginWithHTML.php" method = "post">
                 <input class = "btn btn-outline-secondary" type = "submit" value = "Logout">
             </form>
@@ -109,10 +110,10 @@
         }
     } 
 
-        echo "<table class = 'table-danger table-bordered' width = '1000'>";
+        echo "<table class = 'table-bordered' width = '1000'>";
             echo "<thead>";
             //開頭
-                echo "<tr align = center>";
+                echo "<tr align = center style='background-color: #FFAAD5;'>";
                 echo "    <th>選課代號</th>";
                 echo "    <th>課程名稱</th>";
                 echo "    <th>學分數</th>";

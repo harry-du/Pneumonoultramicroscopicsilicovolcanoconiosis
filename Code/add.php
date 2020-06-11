@@ -16,20 +16,20 @@
     
 
     $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id AND course.class = registration.class";
-    $sql3 = " SELECT (c_id, week, time) FROM time JOIN registration WHERE week = week AND time = time";
     $sql4 = " SELECT now_member, max_member FROM course WHERE c_id = '$c_id'";
     $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = '$s_id'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
-    $sql7 = " SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN course on time.c_id = course.c_id AND course.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time; ";
+    $sql7 = " SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN registration on time.c_id = registration.c_id WHERE registration.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time";
+    $sql9 = " SELECT c_name FROM course JOIN (SELECT * From registration WHERE registration.s_id='$s_id') a ON course.c_id = a.c_id WHERE c_name IN (SELECT Name FROM course WHERE c_id = '$c_id');";
     $sql8 = " SELECT credit from course where course.c_id = '$c_id' AND class = '$c_class'";
     
     $result1 = mysqli_query($con,$sql1);
-    $result3 = mysqli_query($con,$sql3);
     $result4 = mysqli_query($con,$sql4);
     $result5 = mysqli_query($con,$sql5);
     $result6 = mysqli_query($con,$sql6);
     $result7 = mysqli_query($con,$sql7);
     $result8 = mysqli_query($con,$sql8);
+    $result9 = mysqli_query($con,$sql9);
     
     if(!$result4)
 	{
@@ -37,30 +37,29 @@
 		exit();
 	}
 	
-    $row1 = mysqli_fetch_array($result4);
-    $now_member =intval($row1[0]);
-    $max_member =intval($row1[1]);
-    $row2 = mysqli_fetch_assoc($result1);
+    $row4 = mysqli_fetch_array($result4);
+    $now_member =intval($row4[0]);
+    $max_member =intval($row4[1]);
+    $row1 = mysqli_fetch_assoc($result1);
     $SUM_credit = $row2['SUM(credit)'];
-    $num1 = mysqli_num_rows($result5);
-    $row3 = mysqli_fetch_assoc($result8);
+    $num5 = mysqli_num_rows($result5);
+    $row8 = mysqli_fetch_assoc($result8);
     $credit = $row3['credit'];
-    $row4 = mysqli_fetch_assoc($result6);
-    while($array = mysqli_fetch_assoc($result5))
-    {
-        if (preg_match($array['c_name'],$row4['c_name'])){
-            echo "<script>alert('課程同名');window.location.href='details.php';</script>";
-        }
-    }
+    $row6 = mysqli_fetch_assoc($result6);
+    $row7 = mysqli_fetch_all($result7);
+    $row9 = mysqli_fetch_all($result9);
 
     if ($s_id!=null){
         if($now_member+1>$max_member){
             echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
         }
         else if($credit+$SUM_credit>30){
-            echo "<script>alert('加選失敗');window.location.href='details.php';</script>";
+            echo "<script>alert('學分已滿');window.location.href='details.php';</script>";
         }
-        else if($result7 !=null ){
+        else if($row9!=null){
+            echo "<script>alert('課程同名');window.location.href='details.php';</script>";
+        }
+        else if($row7!=null){
             echo "<script>alert('衝堂');window.location.href='details.php';</script>";
         }
         else {

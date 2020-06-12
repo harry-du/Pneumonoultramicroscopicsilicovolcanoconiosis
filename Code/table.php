@@ -26,16 +26,16 @@
     $num = mysqli_num_rows($result7);
 
     echo "<div class='container'> <table class=\"table\"> <thead style=\"background-color: #FF8EFF\">";
-    echo "<tr><th>&emsp;</th> <th>星期一</th> <th>星期二</th> <th>星期三</th> <th>星期四</th> <th>星期五</th> </tr></thead>";
-    echo "<tbody align = \"center\"><tr> <td>一<br>8:10~9:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>二<br>9:10~10:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>三<br>10:10~11:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>四<br>11:10~12:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>五<br>12:10~13:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>六<br>13:10~14:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr> <td>七<br>14:10~15:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>八<br>15:10~16:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>九<br>16:10~17:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
-    echo "<tr><td>十<br>17:10~18:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr></tbody></table></div>";
+    echo "<tr><th>&emsp;</th> <th id = 'w1'>星期一</th> <th id = 'w2'>星期二</th> <th id = 'w3'>星期三</th> <th id = 'w4'>星期四</th> <th id = 'w5'>星期五</th> </tr></thead>";
+    echo "<tbody align = \"center\"><tr id = 'c1'> <td>一<br>8:10~9:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c2'><td>二<br>9:10~10:00</td> <td id = 'c21'>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c3'><td>三<br>10:10~11:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c4'><td>四<br>11:10~12:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c5'><td>五<br>12:10~13:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c6'><td>六<br>13:10~14:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c7'> <td>七<br>14:10~15:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c8'><td>八<br>15:10~16:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c9'><td>九<br>16:10~17:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr>";
+    echo "<tr id = 'c10'><td>十<br>17:10~18:00</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td> <td>&emsp;</td></tr></tbody></table></div>";
 
 ?>

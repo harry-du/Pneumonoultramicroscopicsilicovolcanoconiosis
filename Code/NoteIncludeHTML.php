@@ -9,23 +9,6 @@
     <script type="text/javascript" src="jquery.js"></script>
     <style type="text/css">
         @import "Layout.css";
-        .star-ratings-sprite {
-            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
-            font-size: 0;
-            height: 21px;
-            line-height: 0;
-            overflow: hidden;
-            text-indent: -999em;
-            width: 110px;
-            margin: 0 auto;
-            &-rating {
-                background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
-                background-position: 1 5;
-                float: left;
-                height: 21px;
-                display:block;
-            }
-        }
     </style>
     <title>詳情</title>
 </head>

@@ -82,6 +82,7 @@
       echo "  <input type='submit' value='加選' class='btn btn-outline-success'>";
       echo " </form>";
       echo "<form action='NoteIncludeHTML.php' method='post'>";
+      echo "  <input type='hidden' value='$c_id' name='c_id'>";
       echo "  <input type='submit' value='留言板' class='btn btn-outline-success'>";
       echo "</form>";
       ?>

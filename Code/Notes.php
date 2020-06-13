@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('connect.php');
     $sqls = "SET FOREIGN_KEY_CHECKS = 0";
     mysqli_query($con, $sqls);

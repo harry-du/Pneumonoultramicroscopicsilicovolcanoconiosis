@@ -20,6 +20,7 @@
     </header>
     <br><br>
     <?php
+        session_start();
         include('connect.php');
         $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
         $re = mysqli_query($con,$sql4);
@@ -27,13 +28,14 @@
         print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
         printf ("%.2f", $results['avgs']);
         print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
-        // print("<div class='star-ratings-sprite'><span style='width:");
-        // print($results['avgs']);
-        // print("%'class='star-ratings-sprite-rating'></span></div>");
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $s_id = $_SESSION['s_id'];
+            $c_id = $_POST['c_id'];
+        }
     ?>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
-            <p>評分: </p>
+            <p nowrap>評分: </p>
             <input type="radio" id="1" name="star" value="1">
             <label for="1">1</label>
             <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
@@ -51,6 +53,8 @@
             <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <br><br>
             <textarea placeholder="請輸入留言..." name="notes" style="height: 30vh; width: 100%; padding: 0;"></textarea>
+            <input type='hidden' value='c_id' name='c_id'>
+            <input type='hidden' value='s_id' name='s_id'>
             <br><br>
             <div style="float:right">
             <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
@@ -58,10 +62,8 @@
             </div>
             <br><br>
             <?php
-                include('connect.php');
-                $cid = $_POST['c_id'];
-                $sql2 =  "SELECT `c_id`, `comments`,`star`,`ntime` FROM `message` WHERE (c_id = $cid) ORDER BY `ntime` DESC"; 
-                $result = mysqli_query($con,$sql2) or die("Query Error");
+                $sql2 =  "SELECT `c_id`, `comments`,`star`,`ntime` FROM `message` WHERE (c_id = $c_id) ORDER BY `ntime` DESC"; 
+                $result = mysqli_query($con,$sql2) or die("No Data");
                 $total_fields=mysqli_num_rows($result);
                 for ($i = 0; $i < $total_fields; $i++) {
                     $row = mysqli_fetch_assoc($result);

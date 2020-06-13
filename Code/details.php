@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include('connect.php');
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     $_SESSION['c_id']=$_POST['c_id'];
     $_SESSION['c_class']=$_POST['c_class'];
@@ -28,12 +29,20 @@
 
 <body>
   <header align=center>詳情</header><br><br>
+  <?php
+      $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
+      $sql8 = " SELECT credit from course where course.c_id = '$c_id' AND class = '$c_class'";
+      $result6 = mysqli_query($con,$sql6);
+      $result8 = mysqli_query($con,$sql8);
+      $row6 = mysqli_fetch_assoc($result6);
+      $row8 = mysqli_fetch_assoc($result8);
+  ?>
 
   <div class="container-fluid">
     <div class="p-4" style="background-color: #ffc0cb;">
       <span>開課學期 : 108學年度第2學期<br>
-        課程名稱(班級) : 資料庫系統(資訊二甲)<br>
-        學分:3<br>
+        課程名稱 : <?php echo("$row6")?><br>
+        學分:<?php echo("$row8")?><br>
         授課語言 : 中文<br>
         上課時間/ 地點/ 老師 : (一)03-04 資電403 (二)06 忠206 許懷中
       </span>
@@ -44,12 +53,18 @@
         <thead>
           <tr style="background-color:#ffc0cb;">
             <th scope="col"></th>
-            <th scope="row">課程代碼:<?php echo("$c_id") ?></th>
-            <th scope="row">課程名稱:資料庫系統</th>
+            <th scope="row">課程代碼</th>
+            <th scope="row"><?php echo("$c_id") ?></th>
 
           </tr>
         </thead>
         <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td>課程名稱</td>
+            <td><?php echo("$row6") ?></td>
+
+          </tr>
           <tr>
             <th scope="col"></th>
             <td>課程描述</td>
@@ -68,18 +83,11 @@
             <td>平時成績:40%<br>期中成績:30%<br>期末成績:30%</td>
 
           </tr>
-          <tr>
-            <th scope="row"></th>
-            <td>教科書</td>
-            <td></td>
-
-          </tr>
+          
         </tbody>
       </table>
          
-      <?php
       
-      ?>
     </div>
     <br><br>
       <div class = "row justify-content-end" style = "margin-right:15%">

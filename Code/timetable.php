@@ -73,7 +73,7 @@
 <?php
         include('connect.php');
         $s_id = $_SESSION['s_id'];
-        $sql7 = "SELECT * FROM course INNER JOIN registration WHERE (course.c_id = registration.c_id) AND (course.class = registration.class) AND s_id='$s_id'";
+        $sql7 = "SELECT * FROM course INNER JOIN registration ON (course.c_id = registration.c_id) AND (course.class = registration.class) AND s_id='$s_id'";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
                 echo "<table class = 'table-danger table-bordered' width = '1000'>";

@@ -12,9 +12,12 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style type = "text/css">
+    <link rel="stylesheet" href="Navabar.css" type="text/css" />
+    <!-- 我把Layout.css的並進去Navabar.css了 -->
+    <!-- <style type = "text/css">
         @import "Layout.css";
-    </style>
+    </style> -->
+    
     <script>
         department = new Array();
         department[0] = [""];
@@ -30,12 +33,32 @@
 </head>
 
 <body>
-    <br><br>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="">Navabar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="Main.php">首頁 <span class="sr-only">(current)</span></a>
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action = "timetable.php" method = "post">
+                <button type = "submit" class="btn btn-info mr-sm-2" >我的課表</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" action = "NewLoginWithHTML.php" method = "post">
+                <button type= "submit" class="btn btn-info mr-sm-2">Logout</button>
+            </form>
+        </div>
+    </nav>
     <header>
         <h1 align = center>選課系統</h1>
     </header>
     <br>
-    <div class = "row justify-content-end" style = "margin-right:15%">
+    
+    <!-- <div class = "row justify-content-end" style = "margin-right:15%">
 
         <label class = "form-inline">
             <form action = "timetable.php" method = "POST">
@@ -47,7 +70,8 @@
             </form>
         </label>
 
-    </div>
+    </div> -->
+    
     <form name = "myForm" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "post" class = "container">
         系別：
         <select size=1 onClick="renew(this.selectedIndex);" class="btn btn-outline-info dropdown-toggle">

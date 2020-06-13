@@ -20,7 +20,7 @@
     $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = '$s_id'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
     $sql7 = " SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN registration on time.c_id = registration.c_id WHERE registration.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time";
-    $sql9 = " SELECT c_name FROM course JOIN (SELECT * From registration WHERE registration.s_id='$s_id') a ON course.c_id = a.c_id WHERE c_name IN (SELECT Name FROM course WHERE c_id = '$c_id');";
+    $sql9 = " SELECT c_name FROM course JOIN (SELECT * From registration WHERE registration.s_id='$s_id') a ON course.c_id = a.c_id WHERE c_name IN (SELECT c_name FROM course WHERE c_id = '$c_id');";
     $sql8 = " SELECT credit from course where course.c_id = '$c_id' AND class = '$c_class'";
     
     $result1 = mysqli_query($con,$sql1);

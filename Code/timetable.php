@@ -74,7 +74,7 @@
 <?php
         include('connect.php');
         $s_id = $_SESSION['s_id'];
-        $sql7 = "SELECT * FROM course INNER JOIN registration ON (course.c_id = registration.c_id) AND (course.class = registration.class) AND s_id='$s_id'";
+        $sql7 = "SELECT course.c_id, course.c_name, course.class, course.t_id, course.credit, course.RorE FROM registration INNER JOIN course ON (course.c_id = registration.c_id) AND (course.class = registration.class) WHERE registration.s_id = '$s_id'";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
                 echo "<table class = 'table-danger' align='center' width = '1000'>";
@@ -98,7 +98,7 @@
                             $t_id = $row[3];
                             $credit = $row[4];
                             $RorE = $row[5];
-                            $time = $row[6];
+                            //$time = $row[6];
                             
 
                             echo "<tr align=center>";

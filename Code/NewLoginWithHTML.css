@@ -26,7 +26,7 @@ background-color: rgba(0,0,0,0.5) !important;
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
-color: #FF95CA;
+color: #FFAAD5;
 }
 
 .social_icon span:hover{
@@ -71,7 +71,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color:  #FF95CA;
+background-color:  #FFAAD5;
 width: 100px;
 }
 

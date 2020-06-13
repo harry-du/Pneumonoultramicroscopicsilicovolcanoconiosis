@@ -93,19 +93,18 @@ hr {
 
 /* extend */
 header {
-  background-color: #FF95CA;
-  padding: 30px;
-  text-align: center;
+  text-align: left;
+  padding: 30px;;
   font-size: 35px;
-  color: white;
+  color: #000000;
 }
 
 /* extend */
 footer {
-  background-color: #BE77FF;
+  background-image: url('images.png');
   padding: 10px;
   text-align: center;
-  color: white;
+  color: #000000;
   width: 100%;
   position: absolute;
   bottom: 0
@@ -197,7 +196,7 @@ a {
 }
 
 a:hover {
-  color: #e22620;
+  color: #FF95CA;
   text-decoration: underline;
 }
 

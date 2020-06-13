@@ -54,7 +54,7 @@
         </div>
     </nav>
     <header>
-        <h1 align = center>選課系統</h1>
+        <h1>選課系統</h1>
     </header>
     <br>
     

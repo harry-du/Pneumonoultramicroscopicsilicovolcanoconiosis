@@ -9,10 +9,10 @@ body {
 /* Style the header */
 header {
     background-color: #FF95CA;
+    color: #000000;
     padding: 30px;
-    text-align: center;
+    text-align: left;
     font-size: 35px;
-    color: white;
 }
 
 /* Create two columns/boxes that floats next to each other */

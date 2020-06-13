@@ -22,16 +22,16 @@
     <?php
         session_start();
         include('connect.php');
-        $sql4 = "SELECT AVG(star) AS avgs FROM `message`";
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $s_id = $_SESSION['s_id'];
+            $c_id = $_POST['c_id'];
+        } 
+        $sql4 = "SELECT AVG(star) AS avgs FROM `message` WHERE message.c_id = '$c_id'";
         $re = mysqli_query($con,$sql4);
         $results = mysqli_fetch_array($re);
         print "<p style='font-size:25px; font-family:Microsoft JhengHei' class='container'>評價:";
         printf ("%.2f", $results['avgs']);
         print("<span style='font-size:30px;color:rgb(204, 51, 255);font-style:normal;'>★</span></p>");
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $s_id = $_SESSION['s_id'];
-            $c_id = $_POST['c_id'];
-        }
     ?>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
@@ -62,7 +62,7 @@
             </div>
             <br><br>
             <?php
-                $sql2 =  "SELECT `c_id`, `comments`,`star`,`ntime` FROM `message` WHERE (c_id = $c_id) ORDER BY `ntime` DESC"; 
+                $sql2 =  "SELECT message.c_id, message.comments, message.star, message.ntime FROM `message` WHERE message.c_id = '$c_id' ORDER BY `ntime` DESC"; 
                 $result = mysqli_query($con,$sql2) or die("No Data");
                 $total_fields=mysqli_num_rows($result);
                 for ($i = 0; $i < $total_fields; $i++) {

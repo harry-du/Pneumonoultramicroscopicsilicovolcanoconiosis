@@ -44,7 +44,7 @@
         <thead>
           <tr style="background-color:#ffc0cb;">
             <th scope="col"></th>
-            <th scope="row">課程代碼:</th>
+            <th scope="row">課程代碼:<?php echo("$c_id") ?></th>
             <th scope="row">課程名稱:資料庫系統</th>
 
           </tr>
@@ -76,6 +76,12 @@
           </tr>
         </tbody>
       </table>
+         
+      <?php
+      
+      ?>
+    </div>
+    <br><br>
       <div class = "row justify-content-end" style = "margin-right:15%">
           <form action='add.php' method='post'>
             <input type='hidden' value='$_SESSION[c_id]' name='c_id'> 
@@ -91,15 +97,10 @@
           <form action='NoteIncludeHTML.php' method='post'> 
             <input type='submit' value='返回' class='btn btn-outline-success'> 
           </form>
-      </div>   
-      <?php
-      
-      ?>
-    </div>
+      </div>
 
   </div>
 
-  </table>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

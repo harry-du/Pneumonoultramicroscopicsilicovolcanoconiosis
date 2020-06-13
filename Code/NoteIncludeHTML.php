@@ -24,8 +24,8 @@
         include('connect.php');
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $s_id = $_SESSION['s_id'];
-            $c_id = $_POST['c_id'];
         } 
+        $c_id = $_SESSION['c_id'];
         $sql4 = "SELECT AVG(star) AS avgs FROM `message` WHERE message.c_id = '$c_id'";
         $re = mysqli_query($con,$sql4);
         $results = mysqli_fetch_array($re);

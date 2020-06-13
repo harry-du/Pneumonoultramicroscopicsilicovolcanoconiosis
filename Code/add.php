@@ -4,7 +4,7 @@
     session_start();
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $s_id = $_SESSION['s_id'];
-        $c_id = $_POST['c_id'];
+        $c_id = $_SESSION['c_id'];
         $c_class = $_POST['c_class'];
         $c_name = $_POST['name'];
     }else{

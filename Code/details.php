@@ -1,7 +1,8 @@
 <?php
+  session_start();
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $c_id = $_POST['c_id'];
-    $c_class = $_POST['c_class'];
+    $_SESSION['c_id']=$_POST['c_id'];
+    $_SESSION['c_class']=$_POST['c_class'];
   }else{
     $c_id = ' ';
     $c_class = ' ';
@@ -77,12 +78,12 @@
       </table>
       <?php
       echo "<form action='add.php' method='post'>";
-      echo "  <input type='hidden' value='$c_id' name='c_id'>";
-      echo "  <input type='hidden' value='$c_class' name='c_class'>";
+      echo "  <input type='hidden' value='$_SESSION[c_id]' name='c_id'>";
+      echo "  <input type='hidden' value='$_SESSION[c_class]' name='c_class'>";
       echo "  <input type='submit' value='加選' class='btn btn-outline-success'>";
       echo " </form>";
       echo "<form action='NoteIncludeHTML.php' method='post'>";
-      echo "  <input type='hidden' value='$c_id' name='c_id'>";
+      echo "  <input type='hidden' value='$_SESSION[c_id]' name='c_id'>";
       echo "  <input type='submit' value='留言板' class='btn btn-outline-success'>";
       echo "</form>";
       ?>

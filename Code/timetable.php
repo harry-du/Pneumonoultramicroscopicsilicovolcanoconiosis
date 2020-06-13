@@ -30,7 +30,7 @@
         $course = "<td style=\"height:70px\"</td> ";
         //$S_TDL_E = "<td width=$tdlong>  </td>";
         $list = array(
-            0=>array('零'=>"<thead style=\"background-color: #FF8EFF; text-align:center\" width= $tdlong><td >  </td>",'一'=>"<td>星期一</td> ",'二'=>" <td>星期二</td> ",'三'=>"<td>星期三</td>",'四' =>"<td>星期四</td>",'五' =>"<td>星期五</td>",'六' =>"<td>星期六</td>",'七' =>"<td>星期天</td></thead>" ),
+            0=>array('零'=>"<td><div style=\"text-align:center;\"> </div>  </td>",'一'=>"<td width=\"10%\"><div style=\"text-align:center;\">星期一</td> ",'二'=>" <td width=\"10%\"><div style=\"text-align:center;\">星期二</td> ",'三'=>"<td width=\"10%\"><div style=\"text-align:center;\">星期三</td>",'四' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期四</td>",'五' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期五</td>",'六' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期六</td>",'七' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期天</td></thead>" ),
             1=>array('零' => "<td><div style=\"text-align:center;\">8:00 - 9:00</div></td>",'一'=>"<td width=$tdlong >  </td>",'二'=>"<td width=$tdlong >  </td>",'三'=>"<td width=$tdlong >  </td>",'四' =>"<td width=$tdlong >  </td>",'五' =>"<td width=$tdlong>  </td>",'六' =>"<td width=$tdlong >  </td>",'七' => "<td width=$tdlong >  </td>"),
             2=>array('零' => "<td><div style=\"text-align:center;\">9:00 - 10:00</div></td>",'一' => $course,'二'=>$course,'三'=>$course,'四' =>$course,'五' =>$course,'六' =>$course,'七' => $course),
             3=>array('零' => "<td><div style=\"text-align:center;\">10:00 - 11:00</div></td>",'一'=>$course,'二'=>$course,'三'=>$course,'四' =>$course,'五' =>$course,'六' =>$course,'七' => $course),
@@ -50,11 +50,12 @@
         $array = mysqli_fetch_array($result);
         $cname = $array['c_name'];
         $cweek = $array['week'];
-        $course = intval($array['time']);
-        $list[$course][$cweek] = "<td width=\"10%\"><div style=\"text-align:center;\">" . $cname ."</div></td> ";
+        $course1 = intval($array['time']);
+        $list[$course1][$cweek] = "<td width=\"100px\"><div style=\"text-align:center;\">" . $cname ."</div></td> ";
     }
     print "<div style=\"text-align:center;\"><H3> 已選課表 </H3></div><br> ";
-    print " <table style=\"width:80%;\" border=\"1\" align=\"center\">";
+    print " <table style=\"background-color: #F5C6CB; \"width:100px;\" border=\"1\" align=\"center\">";
+    
         
     foreach ($list as $row) {
         print "<tr style=\"height:70px\">";
@@ -76,7 +77,7 @@
         $sql7 = "SELECT * FROM course INNER JOIN registration ON (course.c_id = registration.c_id) AND (course.class = registration.class) AND s_id='$s_id'";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
-                echo "<table class = 'table-danger table-bordered' width = '1000'>";
+                echo "<table class = 'table-danger' align='center' width = '1000'>";
                     echo "<thead>";
                         //開頭
                         echo "<tr align = center>";
@@ -154,7 +155,7 @@
                     
                     if($SUM_credit-$c<9) {
                         echo '<script>alert("無法退選")</script>';
-                        header("refresh:0; url = timetable.php");
+                        //header("refresh:0; url = timetable.php");
                     }
                     else {
                         $sql8 = "DELETE FROM registration WHERE c_id = '$id'";
@@ -165,7 +166,7 @@
                         echo '<script>alert("退選成功")</script>';
                         $sql4 = "UPDATE course SET now_member=now_member-1 WHERE c_id = '$id'";
                         mysqli_query($con,$sql4);
-                        header("refresh:0; url = timetable.php");
+                        //header("refresh:0; url = timetable.php");
                     }
                     
                 }   

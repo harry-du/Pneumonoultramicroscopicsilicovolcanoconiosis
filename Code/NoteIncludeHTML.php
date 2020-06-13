@@ -59,7 +59,8 @@
             <br><br>
             <?php
                 include('connect.php');
-                $sql2 =  "SELECT `comments`,`star`,`ntime` FROM `message` ORDER BY `ntime` DESC"; 
+                $cid = $_POST['c_id'];
+                $sql2 =  "SELECT `c_id`, `comments`,`star`,`ntime` FROM `message` WHERE (c_id = $cid) ORDER BY `ntime` DESC"; 
                 $result = mysqli_query($con,$sql2) or die("Query Error");
                 $total_fields=mysqli_num_rows($result);
                 for ($i = 0; $i < $total_fields; $i++) {

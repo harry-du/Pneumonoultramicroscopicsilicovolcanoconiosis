@@ -4,6 +4,8 @@
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     $_SESSION['c_id']=$_POST['c_id'];
     $_SESSION['c_class']=$_POST['c_class'];
+    $c_id = $_SESSION['c_id'];
+    $c_class = $_POST['c_class'];
   }else{
     $c_id = ' ';
     $c_class = ' ';
@@ -41,8 +43,8 @@
   <div class="container-fluid">
     <div class="p-4" style="background-color: #ffc0cb;">
       <span>開課學期 : 108學年度第2學期<br>
-        課程名稱 : <?php echo("$row6")?><br>
-        學分:<?php echo("$row8")?><br>
+        課程名稱 : <?php echo($row6['c_name'])?><br>
+        學分:<?php echo($row8['credit'])?><br>
         授課語言 : 中文<br>
         上課時間/ 地點/ 老師 : (一)03-04 資電403 (二)06 忠206 許懷中
       </span>
@@ -62,7 +64,7 @@
         <tr>
             <th scope="row"></th>
             <td>課程名稱</td>
-            <td><?php echo("$row6") ?></td>
+            <td><?php echo($row6['c_name']) ?></td>
 
           </tr>
           <tr>

@@ -53,8 +53,6 @@
             <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>
             <br><br>
             <textarea placeholder="請輸入留言..." name="notes" style="height: 30vh; width: 100%; padding: 0;"></textarea>
-            <input type='hidden' value='c_id' name='c_id'>
-            <input type='hidden' value='s_id' name='s_id'>
             <br><br>
             <div style="float:right">
             <input name="submit" type="submit" value="提交" class="btn btn-outline-success">

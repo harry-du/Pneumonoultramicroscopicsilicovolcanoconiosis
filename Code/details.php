@@ -76,16 +76,24 @@
           </tr>
         </tbody>
       </table>
+      <div class = "row justify-content-end" style = "margin-right:15%">
+          <form action='add.php' method='post'>
+            <input type='hidden' value='$_SESSION[c_id]' name='c_id'> 
+            <input type='hidden' value='$_SESSION[c_class]' name='c_class'> 
+            <input type='submit' value='加選' class='btn btn-outline-success'> 
+           </form>
+           &ensp; 
+          <form action='NoteIncludeHTML.php' method='post'> 
+            <input type='hidden' value='$_SESSION[c_id]' name='c_id'> 
+            <input type='submit' value='留言板' class='btn btn-outline-success'> 
+          </form>
+          &ensp;
+          <form action='NoteIncludeHTML.php' method='post'> 
+            <input type='submit' value='返回' class='btn btn-outline-success'> 
+          </form>
+      </div>   
       <?php
-      echo "<form action='add.php' method='post'>";
-      echo "  <input type='hidden' value='$_SESSION[c_id]' name='c_id'>";
-      echo "  <input type='hidden' value='$_SESSION[c_class]' name='c_class'>";
-      echo "  <input type='submit' value='加選' class='btn btn-outline-success'>";
-      echo " </form>";
-      echo "<form action='NoteIncludeHTML.php' method='post'>";
-      echo "  <input type='hidden' value='$_SESSION[c_id]' name='c_id'>";
-      echo "  <input type='submit' value='留言板' class='btn btn-outline-success'>";
-      echo "</form>";
+      
       ?>
     </div>
 

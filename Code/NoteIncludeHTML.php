@@ -56,7 +56,7 @@
             <br><br>
             <div style="float:right">
             <input name="submit" type="submit" value="提交" class="btn btn-outline-success">
-            <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.html'" value="返回"></input>
+            <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='details.php'" value="返回"></input>
             </div>
             <br><br>
             <?php

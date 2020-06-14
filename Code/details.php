@@ -110,9 +110,9 @@
             <input type='submit' value='留言板' class='btn btn-outline-success'> 
           </form>
           &ensp;
-          <form action='Main.php' method='post'> 
-            <input type='submit' value='返回' class='btn btn-outline-success'> 
-          </form>
+          
+            <input type ="button" class="btn btn-outline-info dropdown-toggle" onclick="javascript:location.href='Main.php'" value="返回"></input>
+
       </div>
 
   </div>

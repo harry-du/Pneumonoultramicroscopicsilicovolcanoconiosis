@@ -34,10 +34,16 @@
   <?php
       $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
       $sql8 = " SELECT credit from course where course.c_id = '$c_id' AND class = '$c_class'";
+      $sql1 = " SELECT class_time,grade,propesition,description FROM `details`WHERE details.c_id = '$c_id'";
+      $sql2 = " SELECT class_time,grade,propesition,description FROM `details`WHERE details.c_id = '2136'";
       $result6 = mysqli_query($con,$sql6);
       $result8 = mysqli_query($con,$sql8);
+      $result1 = mysqli_query($con,$sql1);
+      $result2 = mysqli_query($con,$sql2);
       $row6 = mysqli_fetch_assoc($result6);
       $row8 = mysqli_fetch_assoc($result8);
+      $row1 = mysqli_fetch_assoc($result1);
+      $row2 = mysqli_fetch_assoc($result2);
   ?>
 
   <div class="container-fluid">
@@ -46,7 +52,7 @@
         課程名稱 : <?php echo($row6['c_name'])?><br>
         學分:<?php echo($row8['credit'])?><br>
         授課語言 : 中文<br>
-        上課時間/ 地點/ 老師 : (一)03-04 資電403 (二)06 忠206 許懷中
+        上課時間/ 地點/ 老師 : <?php if($row1!=NULL){echo($row1['class_time']);}else{echo($row2['class_time']);}?>
       </span>
     </div>
     <br><br>
@@ -70,19 +76,19 @@
           <tr>
             <th scope="col"></th>
             <td>課程描述</td>
-            <td>瞭解資料庫的基本原理和結構。課程內容包括資料庫系統概念和架構，<br>實體關係模型，檔案與索引結構，關連式模型，SQL，從ER轉換成關連式綱目，以及正規化。</td>
+            <td><?php if($row1!=NULL){echo($row1['description']);}else{echo($row2['description']);}?>
 
           </tr>
           <tr>
             <th scope="row"></th>
             <td>前置課程</td>
-            <td>計算機概論實習(一)、計算機概論實習(二)、資料結構</td>
+            <td><?php if($row1!=NULL){echo($row1['propesition']);}else{echo($row2['propesition']);}?></td>
 
           </tr>
           <tr>
             <th scope="row"></th>
             <td>評量方式</td>
-            <td>平時成績:40%<br>期中成績:30%<br>期末成績:30%</td>
+            <td><?php if($row1!=NULL){echo($row1['grade']);}else{echo($row2['grade']);}?></td>
 
           </tr>
           
@@ -104,7 +110,7 @@
             <input type='submit' value='留言板' class='btn btn-outline-success'> 
           </form>
           &ensp;
-          <form action='NoteIncludeHTML.php' method='post'> 
+          <form action='Main.php' method='post'> 
             <input type='submit' value='返回' class='btn btn-outline-success'> 
           </form>
       </div>

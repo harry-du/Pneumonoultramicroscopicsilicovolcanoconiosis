@@ -46,7 +46,7 @@
 <?php
     include("connect.php");
     $sid = $_SESSION['s_id'];
-    $sql = "SELECT `c_name`,`week`,`time` FROM (`course` INNER JOIN `registration` ON (course.c_id = registration.c_id) AND (s_id='D0606')) INNER JOIN `time` ON(course.c_id = time.c_id)";
+    $sql = "SELECT `c_name`,`week`,`time` FROM (`course` INNER JOIN `registration` ON (course.c_id = registration.c_id) AND (s_id= '$sid')) INNER JOIN `time` ON(course.c_id = time.c_id)";
     $result = mysqli_query($con,$sql);
     $total_fields=mysqli_num_rows($result);
     $tdlong = "\"10%\"";
@@ -96,7 +96,7 @@
 <?php
         include('connect.php');
         $s_id = $_SESSION['s_id'];
-        $sql7 = "SELECT course.c_id, course.c_name, course.class, course.t_id, course.credit, course.RorE FROM (`course` INNER JOIN `registration` ON (course.c_id = registration.c_id) AND (s_id='D0606')) INNER JOIN `time` ON(course.c_id = time.c_id)";
+        $sql7 = "SELECT course.c_id, course.c_name, course.class, course.t_id, course.credit, course.RorE FROM registration INNER JOIN course ON (course.c_id = registration.c_id) AND (course.class = registration.class) WHERE registration.s_id = '$s_id'";
                 $result7 = mysqli_query($con,$sql7);
                 $num = mysqli_num_rows($result7);
                 echo "<table class = 'table-danger' align='center' width = '1000'>";
@@ -147,12 +147,13 @@
                             }
                             echo "</th>";
                             
-                            echo "   <th>";
+                            echo "    <th>";
                             echo " <form method='post' action='timetable.php'>";
                             echo "     <input name='submit' type='submit' value='退選'>";
                             echo "     <input type='hidden' value='$c_id'  name='c_id'>";
                             echo " </form>";
                             echo "</th>";
+
                             echo "</tr>";
                         }
                     echo "<thead>";
@@ -181,7 +182,7 @@
                     }
                     else {
                         $sql8 = "DELETE FROM registration WHERE c_id = '$id'";
-                        $result8 = mysqli_query($con,$sql8) or die("<script>alert('退選失敗')</script>");
+                        $result8 = mysqli_query($con,$sql8) or die("<script>alert('執行錯誤')</script>");
                         if($R == 'M') {
                             echo '<script>alert("這是必修")</script>';
                         }

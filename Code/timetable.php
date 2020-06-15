@@ -22,13 +22,11 @@
 <?php
     include("connect.php");
     $sid = $_SESSION['s_id'];
-    $sql = "SELECT `c_name`,`week`,`time` FROM (`course` INNER JOIN `registration` ON (course.c_id = registration.c_id) AND (s_id='$sid')) INNER JOIN `time` ON(course.c_id = time.c_id)";
+    $sql = "SELECT `c_name`,`week`,`time` FROM (`course` INNER JOIN `registration` ON (course.c_id = registration.c_id) AND (s_id='D0606')) INNER JOIN `time` ON(course.c_id = time.c_id)";
     $result = mysqli_query($con,$sql);
-    //$array = mysqli_fetch_array($result);
     $total_fields=mysqli_num_rows($result);
     $tdlong = "\"10%\"";
         $course = "<td style=\"height:70px\"</td> ";
-        //$S_TDL_E = "<td width=$tdlong>  </td>";
         $list = array(
             0=>array('零'=>"<td><div style=\"text-align:center;\"> </div>  </td>",'一'=>"<td width=\"10%\"><div style=\"text-align:center;\">星期一</td> ",'二'=>" <td width=\"10%\"><div style=\"text-align:center;\">星期二</td> ",'三'=>"<td width=\"10%\"><div style=\"text-align:center;\">星期三</td>",'四' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期四</td>",'五' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期五</td>",'六' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期六</td>",'七' =>"<td width=\"10%\"><div style=\"text-align:center;\">星期天</td></thead>" ),
             1=>array('零' => "<td><div style=\"text-align:center;\">8:00 - 9:00</div></td>",'一'=>"<td width=$tdlong >  </td>",'二'=>"<td width=$tdlong >  </td>",'三'=>"<td width=$tdlong >  </td>",'四' =>"<td width=$tdlong >  </td>",'五' =>"<td width=$tdlong>  </td>",'六' =>"<td width=$tdlong >  </td>",'七' => "<td width=$tdlong >  </td>"),

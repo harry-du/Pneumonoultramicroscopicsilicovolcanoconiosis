@@ -22,7 +22,7 @@
         department = new Array();
         department[0] = [""];
         department[1] = ["企管一甲", "企管一乙", "企管二甲", "企管二乙", "企管三甲", "企管三乙", "企管四甲", "企管四乙", "企管碩一", "企管碩二"]; //企管系
-        department[2] = ["通識－社會整合(SB)", "通識－社會", "通識－社會(夜)", "通識－人文", "通識－人文(夜)", "通識－自然", "通識－自然(夜)", "通識－統合", "通識－統合(夜)"];	//通識課
+        department[2] = ["通識－社會整合(SB)", "通識－社會(S)", "通識－社會(夜)(S)", "通識－人文(H)", "通識－人文(夜)(H)", "通識－自然(N)", "通識－自然(夜)(N)", "通識－統合(M)", "通識－統合(夜)(M)"];	//通識課
         department[3] = ["資訊一甲", "資訊一乙", "資訊一丙", "資訊二甲", "資訊二乙", "資訊二丙", "資訊二丁", "資訊三甲", "資訊三乙", "資訊三丙", "資訊三丁", "資訊碩一", "資訊博一", "資訊博二", "電腦系統學程資訊三", "軟體工程學程資訊三", "網路與資安學程資訊三", "資訊跨域學程資訊三"];	//資訊系
         function renew(index) {
             for (var i = 0; i < department[index].length; i++)
@@ -103,7 +103,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         require_once('connect.php');
         $member = $_POST['member'];
-        $sql = "Select * from course WHERE class='$member'";
+        $sql = "Select * from course WHERE class='$member' ";
         $result = mysqli_query($con,$sql);
         if($result->num_rows >0){
             while($row = $result->fetch_assoc()){

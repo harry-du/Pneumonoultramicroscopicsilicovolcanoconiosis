@@ -22,11 +22,11 @@
                 exit;
             }else{
                 echo '<script>alert("使用者名稱或密碼錯誤")</script>' ;
-                // header("refresh:0; url = NewLoginWithHTML.php");
+                header("refresh:0; url = NewLoginWithHTML.php");
             }
         }else{
             echo '<script>alert("表單填寫不完整")</script>';
-            // header("refresh:0; url = NewLoginWithHTML.php");
+            header("refresh:0; url = NewLoginWithHTML.php");
         }
     }
    

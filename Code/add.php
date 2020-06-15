@@ -2,20 +2,13 @@
     include('connect.php');
     // include('login.php');
     session_start();
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
         $s_id = $_SESSION['s_id'];
         $c_id = $_POST['c_id'];
         $c_class = $_POST['c_class'];
-        $c_name = $_POST['name'];
-    }else{
-        $s_id = ' ';
-        $c_id = ' ';
-        $c_class = ' ';
-        $c_name = ' ';
-    }
+
     
 
-    $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id AND course.class = registration.class";
+    $sql1 = " SELECT SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id AND course.class = registration.class";
     $sql4 = " SELECT now_member, max_member FROM course WHERE c_id = '$c_id'";
     $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = '$s_id'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
@@ -51,16 +44,16 @@
 
     if ($s_id!=null){
         if($now_member+1>$max_member){
-            echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
+            // echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
         }
         else if($credit+$SUM_credit>30){
-            echo "<script>alert('學分已滿');window.location.href='details.php';</script>";
+            // echo "<script>alert('學分已滿');window.location.href='details.php';</script>";
         }
         else if($row9!=null){
-            echo "<script>alert('課程同名');window.location.href='details.php';</script>";
+            // echo "<script>alert('課程同名');window.location.href='details.php';</script>";
         }
         else if($row7!=null){
-            echo "<script>alert('衝堂');window.location.href='details.php';</script>";
+            // echo "<script>alert('衝堂');window.location.href='details.php';</script>";
         }
         else {
             $sql2 = "INSERT INTO registration(c_id,s_id,class) VALUES('$c_id','$s_id','$c_class')";

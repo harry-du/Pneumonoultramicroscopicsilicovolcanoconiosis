@@ -56,7 +56,7 @@
     </header>
   <!-- <header align=center>詳情</header><br><br>   -->
   <?php
-      $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
+      $sql6 = " SELECT c_name FROM `course` WHERE c_id = '$c_id'";
       $sql8 = " SELECT credit from course where course.c_id = '$c_id' AND class = '$c_class'";
       $sql1 = " SELECT class_time,grade,propesition,description FROM `details`WHERE details.c_id = '$c_id'";
       $sql2 = " SELECT class_time,grade,propesition,description FROM `details`WHERE details.c_id = '2136'";
@@ -68,17 +68,28 @@
       $row8 = mysqli_fetch_assoc($result8);
       $row1 = mysqli_fetch_assoc($result1);
       $row2 = mysqli_fetch_assoc($result2);
-  ?>
 
-  <div class="container-fluid">
-    <div class="alert alert-dismissible alert-primary" style="background-color: #ffc0cb;">
-      <span>開課學期 : 108學年度第2學期<br>
-        課程名稱 : <?php echo($row6['c_name'])?><br>
-        學分:<?php echo($row8['credit'])?><br>
-        授課語言 : 中文<br>
-        上課時間/ 地點/ 老師 : <?php if($row1!=NULL){echo($row1['class_time']);}else{echo($row2['class_time']);}?>
-      </span>
-    </div>
+  echo"<div class=\"container-fluid\">";
+  echo"<div class=\"alert alert-dismissible alert-primary\" style=\"background-color: #ffc0cb;\">";
+  echo"<span>開課學期 : 108學年度第2學期<br>";
+  echo "課程名稱 :";
+  echo $row6['c_name'];
+  echo "<br>";
+  echo "學分:";
+  echo $row8['credit'];
+  echo "<br>";
+  echo"授課語言 : 中文<br>";
+  echo"上課時間/ 地點/ 老師 : ";
+  if($row1!=NULL)
+  {
+    echo $row1['class_time'];
+  }else{
+    echo $row2['class_time'];
+  };
+  echo"</span>";
+  echo"</div>";
+    
+?>
     <br><br>
     <div class="row justify-content-end" style="margin-right:15%">
       <table class="table-danger table-bordered" width="1000" >

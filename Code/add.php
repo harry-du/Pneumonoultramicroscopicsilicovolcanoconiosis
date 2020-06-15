@@ -2,14 +2,16 @@
     include('connect.php');
     // include('login.php');
     session_start();
-        $s_id = $_SESSION['s_id'];
-        $c_id = $_POST['c_id'];
-        $c_class = $_POST['c_class'];
+    $_SERVER["REQUEST_METHOD"] == "POST";
+    $s_id = $_SESSION['s_id'];
+    $c_id = $_SESSION['c_id'];
+    $c_class = $_SESSION['c_class'];
 
     
+    
 
-    $sql1 = " SELECT SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id AND course.class = registration.class";
-    $sql4 = " SELECT now_member, max_member FROM course WHERE c_id = '$c_id'";
+    $sql1 = " SELECT  SUM(credit) FROM registration JOIN course WHERE s_id = '$s_id' AND course.c_id = registration.c_id AND course.class = registration.class";
+    $sql4 = " SELECT now_member, max_member FROM course WHERE c_id = '$c_id' AND class = '$c_class'";
     $sql5 = " SELECT course.c_name FROM registration JOIN course WHERE course.c_id = registration.c_id AND registration.s_id = '$s_id'";
     $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
     $sql7 = " SELECT * FROM (SELECT week,time FROM time WHERE c_id = '$c_id') a INNER JOIN (SELECT time.week,time.time FROM time JOIN registration on time.c_id = registration.c_id WHERE registration.s_id = '$s_id') b WHERE a.week = b.week AND a.time = b.time";
@@ -30,37 +32,37 @@
 		exit();
 	}
 	
-    $row4 = mysqli_fetch_array($result4);
-    $now_member =intval($row4[0]);
-    $max_member =intval($row4[1]);
+    $row4 = mysqli_fetch_assoc($result4);
+    $now_member =intval($row4['now_member']);
+    $max_member =intval($row4['max_member']);
     $row1 = mysqli_fetch_assoc($result1);
-    $SUM_credit = $row2['SUM(credit)'];
+    $SUM_credit = $row1['SUM(credit)'];
     $num5 = mysqli_num_rows($result5);
     $row8 = mysqli_fetch_assoc($result8);
-    $credit = $row3['credit'];
+    $credit = $row8['credit'];
     $row6 = mysqli_fetch_assoc($result6);
     $row7 = mysqli_fetch_all($result7);
     $row9 = mysqli_fetch_all($result9);
 
     if ($s_id!=null){
         if($now_member+1>$max_member){
-            // echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
+            //echo "<script>alert('人數已滿')</script>";
         }
         else if($credit+$SUM_credit>30){
-            // echo "<script>alert('學分已滿');window.location.href='details.php';</script>";
+           // echo "<script>alert('學分已滿');window.location.href='details.php';</script>";
         }
         else if($row9!=null){
-            // echo "<script>alert('課程同名');window.location.href='details.php';</script>";
+            //echo "<script>alert('課程同名');window.location.href='details.php';</script>";
         }
         else if($row7!=null){
-            // echo "<script>alert('衝堂');window.location.href='details.php';</script>";
+           // echo "<script>alert('衝堂');window.location.href='details.php';</script>";
         }
         else {
             $sql2 = "INSERT INTO registration(c_id,s_id,class) VALUES('$c_id','$s_id','$c_class')";
             mysqli_query($con,$sql2);
             $sql8 = "UPDATE course SET now_member=now_member+1 WHERE c_id = '$c_id'";
             mysqli_query($con,$sql8);
-            echo"<script>alert('加選成功');window.location.href='Main.php';</script>";
+           // echo"<script>alert('加選成功');window.location.href='Main.php';</script>";
         }  
     }
     else {

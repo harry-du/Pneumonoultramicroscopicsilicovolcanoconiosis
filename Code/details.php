@@ -6,6 +6,7 @@
     $_SESSION['c_class']=$_POST['c_class'];
     $c_id = $_SESSION['c_id'];
     $c_class = $_POST['c_class'];
+    echo("$c_class");
   }else{
     $c_id = ' ';
     $c_class = ' ';
@@ -23,40 +24,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="jquery.js"></script>
-  <link rel="stylesheet" href="Navabar.css" type="text/css" />
-  <!-- <style type="text/css">
+  <style type="text/css">
     @import "Layout.css";
-  </style> -->
+  </style>
   <title>詳情</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="">Navabar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="Main.php">首頁 <span class="sr-only">(current)</span></a>
-            </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" action = "timetable.php" method = "post">
-                <button type = "submit" class="btn btn-info mr-sm-2" >我的課表</button>
-            </form>
-            <form class="form-inline my-2 my-lg-0" action = "NewLoginWithHTML.php" method = "post">
-                <button type= "submit" class="btn btn-info mr-sm-2">Logout</button>
-            </form>
-        </div>
-    </nav>
-    <header>
-        <h1>詳情</h1>
-    </header>
-  <!-- <header align=center>詳情</header><br><br>   -->
+  <header align=center>詳情</header><br><br>
   <?php
-      $sql6 = " SELECT c_name FROM `course` WHERE c_id = '$c_id'";
+      $sql6 = " SELECT c_name FROM `course`WHERE course.c_id = '$c_id'";
       $sql8 = " SELECT credit from course where course.c_id = '$c_id' AND class = '$c_class'";
       $sql1 = " SELECT class_time,grade,propesition,description FROM `details`WHERE details.c_id = '$c_id'";
       $sql2 = " SELECT class_time,grade,propesition,description FROM `details`WHERE details.c_id = '2136'";
@@ -68,31 +45,20 @@
       $row8 = mysqli_fetch_assoc($result8);
       $row1 = mysqli_fetch_assoc($result1);
       $row2 = mysqli_fetch_assoc($result2);
+  ?>
 
-  echo"<div class=\"container-fluid\">";
-  echo"<div class=\"alert alert-dismissible alert-primary\" style=\"background-color: #ffc0cb;\">";
-  echo"<span>開課學期 : 108學年度第2學期<br>";
-  echo "課程名稱 :";
-  echo $row6['c_name'];
-  echo "<br>";
-  echo "學分:";
-  echo $row8['credit'];
-  echo "<br>";
-  echo"授課語言 : 中文<br>";
-  echo"上課時間/ 地點/ 老師 : ";
-  if($row1!=NULL)
-  {
-    echo $row1['class_time'];
-  }else{
-    echo $row2['class_time'];
-  };
-  echo"</span>";
-  echo"</div>";
-    
-?>
+  <div class="container-fluid">
+    <div class="p-4" style="background-color: #ffc0cb;">
+      <span>開課學期 : 108學年度第2學期<br>
+        課程名稱 : <?php echo($row6['c_name'])?><br>
+        學分:<?php echo($row8['credit'])?><br>
+        授課語言 : 中文<br>
+        上課時間/ 地點/ 老師 : <?php if($row1!=NULL){echo($row1['class_time']);}else{echo($row2['class_time']);}?>
+      </span>
+    </div>
     <br><br>
     <div class="row justify-content-end" style="margin-right:15%">
-      <table class="table-danger table-bordered" width="1000" >
+      <table class="table-danger table-bordered" width="1000">
         <thead>
           <tr style="background-color:#ffc0cb;">
             <th scope="col"></th>
@@ -136,12 +102,12 @@
       <div class = "row justify-content-end" style = "margin-right:15%">
           <form action='add.php' method='post'>
             <input type='hidden' value='$_SESSION[c_id]' name='c_id'> 
-            <input type='hidden' value='$_SESSION[c_class]' name='c_class'> 
+            <input type='hidden' value=$_SESSION[c_class] name='c_class'>   
             <input type='submit' value='加選' class='btn btn-outline-success'> 
            </form>
            &ensp; 
           <form action='NoteIncludeHTML.php' method='post'> 
-            <input type='hidden' value='$_SESSION[c_id]' name='c_id'> 
+            <input type='hidden' value='$_SESSION[c_id]' name='c_id'>
             <input type='submit' value='留言板' class='btn btn-outline-success'> 
           </form>
           &ensp;

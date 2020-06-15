@@ -178,7 +178,7 @@
                     
                     if($SUM_credit-$c<9) {
                         echo '<script>alert("無法退選")</script>';
-                        //header("refresh:0; url = timetable.php");
+                        header("refresh:0; url = timetable.php");
                     }
                     else {
                         $sql8 = "DELETE FROM registration WHERE c_id = '$id'";
@@ -189,7 +189,7 @@
                         echo '<script>alert("退選成功")</script>';
                         $sql4 = "UPDATE course SET now_member=now_member-1 WHERE c_id = '$id'";
                         mysqli_query($con,$sql4);
-                        //header("refresh:0; url = timetable.php");
+                        header("refresh:0; url = timetable.php");
                     }
                     
                 }   

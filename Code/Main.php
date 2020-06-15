@@ -188,7 +188,7 @@
     echo "</section>";
     ?>
     <br><br>
-    <footer>
+    <footer style='position:relative'>
         <ul align = "center">
             <h>注意事項</h>
             <li>1.學分上限為30</li>

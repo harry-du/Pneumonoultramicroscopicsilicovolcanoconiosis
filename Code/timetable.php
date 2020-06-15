@@ -13,12 +13,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style type="text/css">
+    <link rel="stylesheet" href="Navabar.css" type="text/css" />
+    <!-- <style type="text/css">
         @import "Layout.css";
-    </style>
+    </style> -->
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="">Navabar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="Main.php">首頁 <span class="sr-only">(current)</span></a>
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action = "timetable.php" method = "post">
+                <button type = "submit" class="btn btn-info mr-sm-2" >我的課表</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" action = "NewLoginWithHTML.php" method = "post">
+                <button type= "submit" class="btn btn-info mr-sm-2">Logout</button>
+            </form>
+        </div>
+    </nav>
+    <header>
+        <h1>已選課表</h1>
+    </header>
 <?php
     include("connect.php");
     $sid = $_SESSION['s_id'];
@@ -53,7 +77,7 @@
         $course1 = intval($array['time']);
         $list[$course1][$cweek] = "<td width=\"100px\"><div style=\"text-align:center;\">" . $cname ."</div></td> ";
     }
-    print "<div style=\"text-align:center;\"><H3> 已選課表 </H3></div><br> ";
+    // print "<div style=\"text-align:center;\"><H3> 已選課表 </H3></div><br> ";
     print " <table style=\"background-color: #F5C6CB; \"width:100px;\" border=\"1\" align=\"center\">";
     
         
@@ -136,6 +160,7 @@
                         }
                     echo "<thead>";
                 echo "</table>";
+                echo "<br><br><br>";
 
 
                 if(isset($_POST['submit'])) {     

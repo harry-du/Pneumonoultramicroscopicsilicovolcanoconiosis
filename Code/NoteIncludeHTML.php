@@ -7,18 +7,41 @@
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src="jquery.js"></script>
-    <style type="text/css">
+    <link rel="stylesheet" href="Navabar.css" type="text/css" />
+    <!-- <style type="text/css">
         @import "Layout.css";
-    </style>
+    </style> -->
     <title>詳情</title>
 </head>
 
-<body>
-    <br><br>
+<body>  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="">Navabar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="Main.php">首頁 <span class="sr-only">(current)</span></a>
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action = "timetable.php" method = "post">
+                <button type = "submit" class="btn btn-info mr-sm-2" >我的課表</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" action = "NewLoginWithHTML.php" method = "post">
+                <button type= "submit" class="btn btn-info mr-sm-2">Logout</button>
+            </form>
+        </div>
+    </nav>
     <header>
-        <h1 align=center>留言板</h1>
+        <h1>留言版</h1>
     </header>
     <br><br>
+    <!-- <header>
+        <h1 align=center>留言板</h1>
+    </header> -->
     <?php
         session_start();
         include('connect.php');
@@ -35,7 +58,6 @@
     ?>
     <div class="container">
         <form action="Notes.php" method="POST" name="Note">
-            <p nowrap>評分: </p>
             <input type="radio" id="1" name="star" value="1">
             <label for="1">1</label>
             <span style='font-size:20px;color:rgb(204, 51, 255);font-style:normal;'>★</span>

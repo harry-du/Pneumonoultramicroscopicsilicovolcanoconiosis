@@ -190,12 +190,11 @@
                     echo "</tr>";
             }
             echo "</thead>";
-
         echo "</table>";
     echo "</section>";
     ?>
-    <br><br>
-    <footer style='position:relative'>
+    <div style="width:300px;height:150px"></div>
+    <footer>
         <ul align = "center">
             <h>注意事項</h>
             <li>1.學分上限為30</li>

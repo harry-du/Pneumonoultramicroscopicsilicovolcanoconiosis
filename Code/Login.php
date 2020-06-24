@@ -9,7 +9,7 @@
             // $sql =  "SELECT s_id FROM student WHERE s_id = '$id' AND s_password = '$password'";
             // $result = mysqli_query($con,$sql);
             
-            //防治SQL 參數化查詢
+            //防治SQL 參數化查詢Prepare statement
             $stmt = $con->prepare("SELECT s_id FROM student WHERE s_id = ? AND s_password = ?");
             $stmt->bind_param('ss',$id,$password);
             $stmt->execute();

@@ -46,7 +46,7 @@
 
     if ($s_id!=null){
         if($now_member+1>$max_member){
-            echo "<script>alert('人數已滿')</script>";
+            echo "<script>alert('人數已滿');window.location.href='details.php';</script>";
         }
         else if($credit+$SUM_credit>30){
             echo "<script>alert('學分已滿');window.location.href='details.php';</script>";
@@ -55,7 +55,7 @@
             echo "<script>alert('課程同名');window.location.href='details.php';</script>";
         }
         else if($row7!=null){
-            echo "<script>alert('衝堂');javascript:location.href='details.php';</script>";
+            echo "<script>alert('衝堂，你不會影分身，不可以選');javascript:location.href='details.php';</script>";
         }
         else {
             $sql2 = "INSERT INTO registration(c_id,s_id,class) VALUES('$c_id','$s_id','$c_class')";
